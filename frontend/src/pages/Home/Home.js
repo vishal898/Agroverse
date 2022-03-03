@@ -3,12 +3,12 @@ import Navbar from '../../Components/Navbar/Navbar';
 const Home = () => {
   return (
     <>
-    <Navbar/>
+     <Navbar/> 
     <br /><br /><br />
     <section className="hero-section">
       <br /><br /><br /><br /><br /><br/><br/>
 
-      
+      <p>HI</p>
       {/* <Demo></Demo> */}
       
     </section>

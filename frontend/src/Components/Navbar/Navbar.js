@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
 import "./Navbar.css";
-import {BsPersonFill} from "react-icons/bs";
-import { ReactComponent as Icon } from "../../NoteSVG.svg";
+
+// import { ReactComponent as Icon } from "../../NoteSVG.svg";
 
 import { NavLink } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Navbar = () => {
     <>
       <nav className="main-nav">
         <div className="Icon">
-        <Icon style={{"height":"80","justifyContent":"start","alignItems": "center","width":"80"}} />
+        {/* <Icon style={{"height":"80","justifyContent":"start","alignItems": "center","width":"80"}} /> */}
         </div>
         {/* 1st logo part  */}
         <div className="logo">
