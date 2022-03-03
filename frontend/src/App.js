@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
+// import Create from './pages/Plot/Plot';
+ import Home from './pages/Home/Home';
+// import Anki from './pages/Crop/Crop';
+// import Glogin from './pages/Glogin/Glogin'
+
+
+const App=()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    
+    <Switch>
+    {/* <Route exact path="/">
+      <Glogin/>
+      </Route>   */}
+      
+    <Route exact path="/home">
+      <Home />
+    </Route>
+
+    {/* <Route exact path="/crop">
+      <Anki />
+    </Route> */}
+
+
+    {/* <Route exact path="/plot">
+      <Create/>
+    </Route> */}
+    
+  </Switch>
+  </>
   );
 }
+
+
 
 export default App;
