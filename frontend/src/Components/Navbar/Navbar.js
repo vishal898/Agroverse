@@ -19,8 +19,8 @@ const Navbar = () => {
 
           <h1>
           
-            <span>N</span>ote
-            <span>I</span>t
+            <span>A</span>gro
+            <span></span>verse
           </h1>
         </div>
 
