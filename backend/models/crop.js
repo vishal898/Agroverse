@@ -28,8 +28,8 @@ const cropSchema = new Schema({
         type:Number,
         required: true,
     },
-	demand:[Number,366],
-	supply:[Number,366],
+	demand:[Number],
+	supply:[Number],
 });
 
 
