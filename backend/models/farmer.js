@@ -14,19 +14,7 @@ const farmerSchema = new Schema({
     email:{
 		type: String,
 		required: true,
-	},
-    crop:[
-        {
-            type:Schema.Types.ObjectId,
-            ref:'Crop',
-        },
-    ],
-    plot:[
-        {
-            type:Schema.Types.ObjectId,
-            ref:'Plot',
-        },
-    ]
+	}
 });
 
 
