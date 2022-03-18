@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
-    farmerId:{
+    userId:{
         type:Schema.Types.ObjectId,
-        ref:'Farmer',
+        ref:'User',
     },
     startDate:{
 		type: Date,
@@ -25,6 +25,6 @@ const todoSchema = new Schema({
 });
 
 
-const Todo = mongoose.model('Todo',noteSchema);
+const Todo = mongoose.model('Todo',todoSchema);
 
 module.exports = Todo ;

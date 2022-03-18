@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const cropSchema = new Schema({
 
-	farmerId:{
+	userId:{
         type:Schema.Types.ObjectId,
-        ref:'Farmer',
+        ref:'User',
     },
     cropname:{
 		type: String,

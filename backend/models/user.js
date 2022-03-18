@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const farmerSchema = new Schema({
-    farmername:{
+const userSchema = new Schema({
+    username:{
 		type: String,
 		required: true,
 	},
@@ -18,6 +18,6 @@ const farmerSchema = new Schema({
 });
 
 
-const Farmer = mongoose.model('Farmer',farmerSchema);
+const User = mongoose.model('User',userSchema);
 
-module.exports = Farmer ;
+module.exports = User ;

@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const parcelSchema = new Schema({
-    farmerId:{
+    userId:{
         type:Schema.Types.ObjectId,
-        ref:'Farmer',
+        ref:'User',
     },
-    parselNo:{
+    parcelNo:{
         type:Number,
         required:true,
     },
@@ -30,6 +30,6 @@ const parcelSchema = new Schema({
 });
 
 
-const Plot = mongoose.model('Parcel',parcelSchema);
+const Parcel = mongoose.model('Parcel',parcelSchema);
 
 module.exports = Parcel ;

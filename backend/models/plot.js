@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const plotSchema = new Schema({
-    farmerId:{
+    userId:{
         type:Schema.Types.ObjectId,
-        ref:'Farmer',
+        ref:'User',
     },
     plotname:{
 		type: String,
