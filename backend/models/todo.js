@@ -22,6 +22,13 @@ const todoSchema = new Schema({
         type:Number,
         required:true,
     },
+    parcels:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Parcel',
+        },
+    ],
+
 });
 
 

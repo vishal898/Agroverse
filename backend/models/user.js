@@ -14,7 +14,25 @@ const userSchema = new Schema({
     email:{
 		type: String,
 		required: true,
-	}
+	},
+	crops:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Crop',
+        },
+    ],
+	plots:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Plot',
+        },
+    ],
+	todos:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'todo',
+        },
+    ],
 });
 
 

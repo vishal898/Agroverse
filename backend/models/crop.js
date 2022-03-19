@@ -8,7 +8,7 @@ const cropSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'User',
     },
-    cropname:{
+    c1ropname:{
 		type: String,
 		required: true,
 	},
@@ -28,8 +28,8 @@ const cropSchema = new Schema({
         type:Number,
         required: true,
     },
-	demand:[Number],
-	supply:[Number],
+	demand:[Number], 
+	supply:[Number], 
 });
 
 

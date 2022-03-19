@@ -74,28 +74,5 @@ app.get('/',(req,res)=>{
     res.send('API IS RUNNING');
 })
 
-app.get('/api/users',(req,res)=>{
-    console.log('kala111');
-    //res.json(req.user);
-})
-
-app.post('/api/users',(req,res)=>{
-    // console.log(req.body);
-    const { username,email } = req.body;
-    User.findOne({username:username,email:email})
-    .then((userDB)=>{
-        if(userDB){
-            return res.json({error:"existed"});
-        }
-        const user = new User({username,email});
-        user.save().then(()=>{
-            res.json({message:"user registered"});
-        })
-    }).catch((err)=>{
-        console.log('kala123');
-    })
-})
-
-
 
 app.listen(PORT,console.log(`SERVER STARTED AT PORT ${PORT}`));

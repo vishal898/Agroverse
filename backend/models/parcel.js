@@ -7,6 +7,10 @@ const parcelSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'User',
     },
+    plotId:{
+        type:Schema.Types.ObjectId,
+        ref:'Plot',
+    },
     parcelNo:{
         type:Number,
         required:true,
