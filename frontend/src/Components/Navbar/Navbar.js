@@ -40,7 +40,7 @@ const Navbar = () => {
               <NavLink to="/plot">Plot</NavLink>
             </li>
             <li>
-              <NavLink to="/crop">Crop</NavLink>
+              <NavLink to="/user">User</NavLink>
             </li>
             {/* <li> <NavLink to="/user">
                 < BsPersonFill/>
