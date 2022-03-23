@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/user");
 
+const BASE_API_URL =  "http://localhost:3000";
 
 router.get(
 	"/google",
@@ -27,12 +28,12 @@ router.get("/me", (req, res) => {
 router.get(
 	"/google/callback",
 	passport.authenticate("google", {
-		failureRedirect: "http://localhost:3000/bad",
+		failureRedirect: `${BASE_API_URL}/bad`,
 	}),
 	function (req, res) {
 		// Successful authentication, redirect home.
 		
-		res.redirect("http://localhost:3000/home");
+		res.redirect(`${BASE_API_URL}/home`);
 	}
 );
 
@@ -43,7 +44,7 @@ router.get("/logout", (req, res) => {
 	req.session.destroy((err) => {
 		res.clearCookie("connect.sid");
 		// Don't redirect, just print text
-		res.redirect("http://localhost:3000");
+		res.redirect(`${BASE_API_URL}`);
 	});
 });
 

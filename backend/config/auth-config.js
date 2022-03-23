@@ -1,5 +1,6 @@
 const User = require("../models/user");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
+const BASE_API_URL =  "http://localhost:5000";
 module.exports = (passport) => {
 	passport.serializeUser(function (user, done) {
 		done(null, user);
@@ -17,7 +18,7 @@ module.exports = (passport) => {
 				clientID:
 					"864331601868-a89fh19jmrclcl23r78p8vtj66gasvc4.apps.googleusercontent.com",
 				clientSecret: "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",
-				callbackURL: "http://localhost:5000/google/callback",
+				callbackURL: `${BASE_API_URL}/google/callback`,
 			},
 			function (accessToken, refreshToken, profile, cb) {
 				console.log(profile);
