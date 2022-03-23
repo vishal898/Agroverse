@@ -8,7 +8,7 @@ const cropSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'User',
     },
-    c1ropname:{
+    cropname:{
 		type: String,
 		required: true,
 	},

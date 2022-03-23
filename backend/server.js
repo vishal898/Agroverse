@@ -19,7 +19,7 @@ const Todo = require('./models/todo');
 
 const mongoose = require('mongoose');
 
-// const cropRoutes = require('./routes/crop-routes');
+const cropRoutes = require('./routes/crop-routes');
 // const parcelRoutes = require('./routes/parcel-routes');
 // const plotRoutes = require('./routes/plot-routes');
 // const todoRoutes = require('./routes/todo-routes');
@@ -65,7 +65,7 @@ app.use(authRoutes);
 
 // all routes 
 
-// app.use(cropRoutes);
+app.use(cropRoutes);
 // app.use(parcelRoutes);
 // app.use(plotRoutes);
 // app.use(todoRoutes);
