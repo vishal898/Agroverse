@@ -9,7 +9,7 @@ const User = require('../models/user');
 // get read 
 router.get('/getAllCrops',async(req,res)=>{
     console.log("getCrop");
-    const uid=req.body.user._id;
+    const uid=req.user._id;
     console.log(uid);
     Crop.find({userId:uid},(err,data)=>{
         if(err)throw error;
