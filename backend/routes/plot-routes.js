@@ -27,7 +27,7 @@ router.post('/createPlot',(req,res)=>{
     console.log(req.body);
     console.log("in create");
     const {plotname,parcelCnt,parcelLength,parcelWidth} = req.body;
-    const userId = req.body.user._id;
+    const userId = req.user._id;
 
     
     const newPlot = new Plot({
