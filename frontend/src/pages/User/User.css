@@ -1,0 +1,90 @@
+.card {
+  display: block;
+  box-shadow: 0 8px 16px 0 rgba(11, 95, 121, 0.685);
+
+  margin-top: 5%;
+  height: max-content;
+  width: 500px;
+  border-radius: 15px;
+
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  font-family: arial;
+
+  padding-top: 20px;
+
+  border-color: rgb(4, 49, 63);
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+  padding-top: 6px;
+}
+
+.tags {
+  margin-top: 1px;
+  color: rgb(64, 129, 116);
+  font-size: 19px;
+  padding: 2px;
+}
+.yourtag {
+  margin-top: 30px;
+  color: rgb(41, 14, 66);
+  font-size: 20px;
+}
+
+.loginbutton {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  border-radius: 0 0 15px 15px;
+
+  color: white;
+  background: linear-gradient(to bottom right, #3bb0b4, #95fafa);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 50px;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+}
+
+button:hover,
+a:hover {
+  opacity: 0.7;
+}
+.cent {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonhome {
+  background-color: #1c1852d5;
+  color: rgb(255, 248, 248);
+  text-align: center;
+  cursor: pointer;
+  width: 20%;
+
+  height: 40px;
+  width: 40px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.username {
+  margin-top: 10px;
+  font-family: monospace;
+}
+
+.middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
