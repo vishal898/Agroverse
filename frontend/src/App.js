@@ -14,7 +14,6 @@ const App=()=> {
     <>
     
     <Routes>
-    
      <Route path='/home' element={<Home/>} /> 
      <Route path='/' element={<Glogin/>} /> 
      <Route path='/crop' element={<Crop/>} /> 
