@@ -39,9 +39,9 @@ const Navbar = () => {
             <li>
               <NavLink to="/plot">Plot</NavLink>
             </li>
-            <li>
-              <NavLink to="/crop">Crop</NavLink>
-            </li>
+            {/* <li>
+              <NavLink to="/">Crop</NavLink>
+            </li> */}
             {/* <li> <NavLink to="/user">
                 < BsPersonFill/>
                 </NavLink>
