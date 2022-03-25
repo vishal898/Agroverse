@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import "./Cropcard.css";
 
 import Cropform from "../../pages/Crop/Form"; 
 
@@ -26,7 +27,7 @@ export default function Cropcard(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Add Crop</Button>
+      <button className="add" onClick={handleOpen}>Add Crop</button>
       <Modal
         open={open}
         onClose={handleClose}

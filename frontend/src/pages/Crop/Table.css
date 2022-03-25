@@ -1,7 +1,8 @@
 .headt {
-  background: linear-gradient(to bottom right, #4b5291, #6a81e9);
+  background: linear-gradient(to bottom right, #3bb0b4, #11a5a5);
 }
 .tabht {
   max-height: 450px;
   overflow-y: auto;
+  margin: 0 200px;
 }
