@@ -75,4 +75,61 @@ router.post('/deleteCrop/:cropId',(req,res)=>{
     console.log('hit delete api');
 });
 
+
+
+
+
+
+// add demand 
+router.post('/addDemand',(req,res)=>{
+    
+    console.log(req.body);
+    console.log("in add demand");
+    const {date1,date2,cropId,q} = req.body;
+
+    Crop.findById(cropId,(err,crop)=>{
+      
+        var dateD = new Date ("Jan 01, 2000, 00:00:01");  
+        var date11=new Date(date1);
+        var date22=new Date(date2);
+
+        //calculate total number of seconds between two dates
+        console.log(date11);  
+        console.log(dateD);  
+
+        var total_seconds = Math.abs(date11 - dateD) / 1000;  
+        console.log(total_seconds);
+        //calculate days difference by dividing total seconds in a day  
+        var day1 = Math.floor (total_seconds / (60 * 60 * 24));  
+        day1%=366;
+
+        console.log(day1);
+       
+
+
+
+        total_seconds = Math.abs(date22 - dateD) / 1000;  
+        //calculate days difference by dividing total seconds in a day  
+        var day2 = Math.floor (total_seconds / (60 * 60 * 24));  
+        day2%=366;
+        console.log(day2);
+
+        if(day1<=day2)
+        {
+            for(var i=day1;i<=day2;i++)
+                crop.demand[i]+=q;
+        }
+        else
+        {
+            for(var i=day1;i<=365;i++)
+                crop.demand[i]+=q;
+            for(var i=0;i<=day2;i++)
+                crop.demand[i]+=q;
+
+        }
+        crop.save();
+    });
+});
+
+
 module.exports = router ;

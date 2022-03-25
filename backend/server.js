@@ -23,7 +23,7 @@ const cropRoutes = require('./routes/crop-routes');
 //const parcelRoutes = require('./routes/parcel-routes');
 const plotRoutes = require('./routes/plot-routes');
 // const todoRoutes = require('./routes/todo-routes');
-
+//const demandRoutes = require('./routes/demand-routes');
 
 dbConnection.db();
 
@@ -69,6 +69,7 @@ app.use(cropRoutes);
 // app.use(parcelRoutes);
 app.use(plotRoutes);
 // app.use(todoRoutes);
+//app.use(demandRoutes);
 
 app.get('/',(req,res)=>{
     res.send('API IS RUNNING');
