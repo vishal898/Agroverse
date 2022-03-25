@@ -57,23 +57,21 @@ router.post('/createCrop',(req,res)=>{
 // post delete 
 router.post('/deleteCrop/:cropId',(req,res)=>{
     const NID = req.params.cropId;
-   
     console.log(NID);
     Crop.findOneAndDelete({_id:NID},(err,data)=>{
-        if(err)res.send(err);
-        res.send(`DELETED ${NID}`);
+        if(err)res.json(err);
         data.save();
         const userId=data.userId;
         User.findById(userId, (err, user)=> {
             if (err){
-                console.log(err);
-              }
-              else{
-            user.crops.pull(NID);
-            user.save();}
+                console.log(`user - ${err}`);
+            }else{
+                user.crops.pull(NID);
+                user.save();
+            }
         })
+        res.json(`DELETED ${NID}`);
     });
-   
     console.log('hit delete api');
 });
 
