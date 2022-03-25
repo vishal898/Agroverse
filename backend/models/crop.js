@@ -28,6 +28,10 @@ const cropSchema = new Schema({
         type:Number,
         required: true,
     },
+    areaPer5:{
+        type:Number,
+        required: true,
+    },
 	demand:[Number], 
 	supply:[Number], 
 });

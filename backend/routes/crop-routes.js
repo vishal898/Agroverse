@@ -25,7 +25,7 @@ router.post('/createCrop',(req,res)=>{
     
     console.log(req.body);
     console.log("in create");
-    const {cropname,s1,s2,s3,prodPer5} = req.body;
+    const {cropname,s1,s2,s3,prodPer5,areaPer5} = req.body;
     const userId = req.user._id;
 
     
@@ -37,8 +37,10 @@ router.post('/createCrop',(req,res)=>{
         s2:s2,
         s3:s3,
         prodPer5:prodPer5,
+        areaPer5:areaPer5,
         demand:tmp,
         supply:tmp,
+
 	});
 
     console.log(newCrop);
@@ -49,6 +51,7 @@ router.post('/createCrop',(req,res)=>{
         user.crops.push(newCrop._id);
         console.log(newCrop._id);
         user.save();
+        res.json(`added`);
     });
 });
 
@@ -57,26 +60,23 @@ router.post('/createCrop',(req,res)=>{
 // post delete 
 router.post('/deleteCrop/:cropId',(req,res)=>{
     const NID = req.params.cropId;
-   
     console.log(NID);
     Crop.findOneAndDelete({_id:NID},(err,data)=>{
-        if(err)res.send(err);
-        res.send(`DELETED ${NID}`);
+        if(err)res.json(err);
         data.save();
         const userId=data.userId;
         User.findById(userId, (err, user)=> {
             if (err){
-                console.log(err);
-              }
-              else{
-            user.crops.pull(NID);
-            user.save();}
+                console.log(`user - ${err}`);
+            }else{
+                user.crops.pull(NID);
+                user.save();
+            }
         })
+        res.json(`DELETED ${NID}`);
     });
-   
     console.log('hit delete api');
 });
-
 
 
 
@@ -130,6 +130,7 @@ router.post('/addDemand',(req,res)=>{
 
         }
         crop.save();
+        res.json(`demand added`);
     });
 });
 
