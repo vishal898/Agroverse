@@ -10,10 +10,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-// import Preview from '../Preview/Preview';
 
 import Notecard from "../../Components/Notecard/Notecard";
-// import "./Table.css"
+import "./Table.css";
 import { BASE_API_URL } from "../../constant";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -39,27 +38,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CustomizedTables(props) {
   const crops = props.crops;
 
-  // const handleDeleteChange = (noteId)=>{
-  //   console.log(noteId);
-  //   ( async()=>{
-  //       const delData = await axios.post(`${BASE_API_URL}/deleteNote/${noteId}`,{
-  //         withCredentials:true,
-  //       });
-  //       console.log(delData);
-  //       const crops = await axios.get(`${BASE_API_URL}/getAllcrops`,{
-  //           withCredentials:true,
-  //       });
-  //       const nd = await crops.data;
-  //       console.log(nd);
-  //       props.onChange(nd);
-  //   })();
-  // };
-  // const handleDifficulty=(note,value)=>{
+  const handleDeleteChange = (cropId)=>{
+    console.log(cropId);
+    ( async()=>{
+        const delData = await axios.post(`${BASE_API_URL}/deleteCrop/${cropId}`,{
+          withCredentials:true,
+        });
+        console.log(delData);
+        const crops = await axios.get(`${BASE_API_URL}/getAllcrops`,{
+            withCredentials:true,
+        });
+        const nd = await crops.data;
+        console.log(nd);
+        props.onChange(nd);
+    })();
 
-  // const handleModal = (note)=>{
-  //   //console.log(note);
-
-  // };
+  };
+  
 
   return (
     <>
@@ -77,55 +72,67 @@ export default function CustomizedTables(props) {
                     <StyledTableCell align="center">S1 </StyledTableCell>
                     <StyledTableCell align="center">S2 </StyledTableCell>
                     <StyledTableCell align="center">S3 </StyledTableCell>
+                    <StyledTableCell align="center">ProdPer5 </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {crops.map((note, ind) => (
-                    // console.log(note);
+                  {crops.map((crop, ind) => (
+                    // console.log(crop);
 
-                    <StyledTableRow key={note._id}>
+                    <StyledTableRow key={crop._id}>
                       <StyledTableCell
                         component="th"
-                        scope="note"
+                        scope="crop"
                         style={{ width: 15 }}
                       >
                         {" "}
                         {ind + 1}{" "}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                        <Button
+                      {crop.cropname}
+                        {/* <Button
                           onClick={() => {
-                            // handleModal(note);
-                            console.log(note);
+                            // handleModal(crop);
+                            console.log(crop);
                           }}
                           color="primary"
                         >
                           {
                             <Notecard
-                              note={note}
+                              crop={crop}
                               onClose={(value) => {
                                 console.log(value);
-                                note.difficulty = value;
+                                crop.difficulty = value;
                                 document.getElementById("diff").innerHTML =
-                                  note.difficulty;
+                                  crop.difficulty;
                               }}
                             />
                           }
-                        </Button>
+                        </Button> */}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {note.difficulty}
+                        {crop.s1}
                       </StyledTableCell>
-                      {/* <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
-                <Button
-                  onClick={ ()=>{
-                    handleDeleteChange(note._id);
-                  }}
-                  color="secondary" >
-                  DELETE
-                </Button>   
-              </StyledTableCell> */}
+                      <StyledTableCell id="diff" align="center">
+                        {crop.s2}
+                      </StyledTableCell>
+                      <StyledTableCell id="diff" align="center">
+                        {crop.s3}
+                      </StyledTableCell>
+                      <StyledTableCell id="diff" align="center">
+                        {crop.prodPer5}
+                      </StyledTableCell>
+                      <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
+                        <Button
+                          onClick={ ()=>{
+                            console.log(crop._id);
+                            handleDeleteChange(crop._id);
+                          }}
+                          color="secondary" >
+                          DELETE
+                        </Button>   
+                      </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
@@ -133,9 +140,6 @@ export default function CustomizedTables(props) {
             </TableContainer>
             <br />
             <br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              {/* <Preview note={crops}/> */}
-            </div>
           </>
         ) : (
           <div>isLoading</div>

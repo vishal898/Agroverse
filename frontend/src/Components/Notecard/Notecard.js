@@ -12,7 +12,7 @@ import { sizeWidth } from "@mui/system";
 import { BASE_API_URL } from "../../constant";
 
 export default function Notecard(props) {
-  const note = props.note;
+  const crop = props.crop;
   const [open, setOpen] = React.useState(false);
   const [isLoading, setLoading] = useState(true);
 
@@ -24,18 +24,18 @@ export default function Notecard(props) {
     setLoading(false);
   }, []);
 
-  // const handleSaveChange = (NID) => {
-  //   (async () => {
-  //     const updatedNote = await axios.post(
-  //       `${BASE_API_URL}/updateNote/${NID}`,
-  //       note,
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //   })();
-  //   setOpen(false);
-  // };
+  const handleSaveChange = (NID) => {
+    (async () => {
+      const updatedCrop = await axios.post(
+        `${BASE_API_URL}/addCrop/${NID}`,
+        crop,
+        {
+          withCredentials: true,
+        }
+      );
+    })();
+    setOpen(false);
+  };
 
   
 
@@ -54,11 +54,11 @@ export default function Notecard(props) {
                 sx={{ width: "100%", height: "50px" }}
                 id="titlefield"
                 freesolo
-                defaultValue={note.title}
+                defaultValue={crop.cropname}
                 onChange={(event) => {
-                  note.title = event.target.value;
+                  crop.cropname = event.target.value;
                 }}
-                placeholder="Title Here"
+                placeholder=""
               ></TextField>
 
               <br />
@@ -68,7 +68,7 @@ export default function Notecard(props) {
               <div className="bottom">
                 
                 
-                {/* <div className="item">
+                 <div className="item">
                   <Button
                     className=" buttonqs item"
                     sx={{
@@ -77,12 +77,12 @@ export default function Notecard(props) {
                       borderRadius: "32px",
                     }}
                     onClick={() => {
-                      handleSaveChange(note._id);
+                      handleSaveChange(crop._id);
                     }}
                   >
                     Save
                   </Button>
-                </div> */}
+                </div> 
               </div>
             </Box>
           </Modal>

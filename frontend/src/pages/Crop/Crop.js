@@ -25,6 +25,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { minWidth } from "@mui/system";
 
 import { BASE_API_URL } from "../../constant";
+import Navbar from '../../Components/Navbar/Navbar';
+import Cropcard from "../../Components/Cropcard/Cropcard";
 
 export default function Crop() {
   const [skipDBCall, setSkipDBCall] = useState(false);
@@ -69,10 +71,14 @@ export default function Crop() {
   }
 
   return (
-    <div style={{ width: "1000px" }}>
-      <p align="center" className="hnote">
-        My crops
-      </p>
+    <>
+    <Navbar/>
+    
+    <div >
+      <h1 align="center" className="hnote">
+        My crops  <Cropcard />
+      </h1>
+     
       <br />
       <br />
       <br />
@@ -91,6 +97,7 @@ export default function Crop() {
       <br />
       <br />
     </div>
+    </>
   );
 }
 
