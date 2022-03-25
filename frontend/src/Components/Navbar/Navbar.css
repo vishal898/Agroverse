@@ -29,7 +29,7 @@ li {
   height: 10rem;
   display: grid;
   grid-template-columns: 90px 1fr 1fr;
-  box-shadow: rgba(59, 59, 134, 0.479) 0px 50px 100px -20px,
+  box-shadow: rgba(66, 200, 209, 0.637) 0px 50px 100px -20px,
     rgba(46, 45, 45, 0.3) 0px 30px 60px -30px;
 }
 
@@ -41,7 +41,7 @@ li {
 }
 body {
   /* background-image: url("bg-link.svg"); */
-  /* background-image: url("mp1-bg.png"); */
+  background-image: url("mp4-bg (1).png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -78,7 +78,7 @@ body {
   font-size: 2.5rem;
   font-weight: 400;
   text-transform: uppercase;
-  background: -webkit-linear-gradient(rgb(40, 132, 160), rgb(41, 38, 97));
+  background: -webkit-linear-gradient(rgb(40, 132, 160), rgb(3, 55, 68));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
