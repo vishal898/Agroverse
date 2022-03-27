@@ -12,8 +12,6 @@ import { BASE_API_URL } from "../../constant";
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 
@@ -66,16 +64,16 @@ export default function Form({ onFormSubmit }) {
                     </Grid>
                     <br/>
                     <Grid item>
-                    <InputLabel shrink htmlFor="Total Number of Parcels-input"> Total Number of Parcels </InputLabel>
-                        <TextField
-                            id="Total Number of Parcels-input"
-                            name="parcelCnt"
-                            label="Total Number of Parcels"
-                            type="number"
-                            value={formValues.parcelCnt}
-                            onChange={handleChange}
-                        />
-                    </Grid>
+                    <DesktopDatePicker
+                        label=""
+                        value={value}
+                        minDate={new Date('2022-03-27')}
+                        onChange={(newValue) => {
+                            setValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                    </Grid> 
                     <br/>
                     <Grid item>
                     <InputLabel shrink htmlFor=" Length Of Each Parcel-input">  Length Of Each Parcel </InputLabel>
@@ -113,7 +111,6 @@ export default function Form({ onFormSubmit }) {
 
 // export default function ResponsiveDatePickers() {
 //   const [value, setValue] = React.useState(new Date());
-
 //   return (
 //     <LocalizationProvider dateAdapter={AdapterDateFns}>
 //       <Stack spacing={3}>
@@ -128,7 +125,7 @@ export default function Form({ onFormSubmit }) {
 //           renderInput={(params) => <TextField {...params} />}
 //         />
         
-//       </Stack>
+//     </Stack>
 //     </LocalizationProvider>
 //   );
 // }
