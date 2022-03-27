@@ -10,8 +10,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
-import Notecard from "../../Components/Notecard/Notecard";
 import "./Table.css";
 import { BASE_API_URL } from "../../constant";
 
