@@ -20,7 +20,7 @@ const defaultValues = {
     supply:[],
 };
 
-export default function Crop() {
+export default function Form({ onFormSubmit }) {
 
     const [formValues, setFormValues] = useState(defaultValues);
 
@@ -35,12 +35,16 @@ export default function Crop() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("handleSumbitClicked");
         console.log(formValues);
+        onFormSubmit();
+        console.log("handleSumbitClicked2");
         // idhar axios call ayega database mai update karne keleye
         ( async()=>{
-            const plot = await axios.get('http://localhost:5000/createcrop',{
+            const plot = await axios.post('http://localhost:5000/createcrop',formValues,{
                 withCredentials:true,
             });
+            
         })();
 
         // after adding new plot details
@@ -118,13 +122,13 @@ export default function Crop() {
                     </Grid>
                     <br />
                     <Grid item>
-                    <InputLabel shrink htmlFor="area-input"> Area Of the Plots </InputLabel>
+                    <InputLabel shrink htmlFor="areaPer5-input"> Area Per 5 Plants </InputLabel>
                         <TextField
-                            id="area-input"
-                            name="areaofparcel"
-                            label="Area of Parcel"
+                            id="areaPer5-input"
+                            name="areaPer5"
+                            label="areaPer5"
                             type="number"
-                            value={formValues.areaofparcel}
+                            value={formValues.areaPer5}
                             onChange={handleChange}
                         />
                     </Grid>
