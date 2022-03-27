@@ -7,7 +7,7 @@ const User = require('../models/user');
 const User = require('../models/todo');
 
 
-router.get('/getTodo',async(req,res)=>{
+router.get('/getTodoS1',async(req,res)=>{
     const uid=req.body.user._id;
     console.log(uid);
     Todo.find({userId:uid},(err,data)=>{
@@ -21,7 +21,47 @@ router.get('/getTodo',async(req,res)=>{
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             console.log(diffDays + " days");
            // return 1;
-             return (diffDays<=1); 
+             return (diffDays<=1 && todo.stage==1); 
+        });
+        res.json(filtered);
+    });
+});
+
+router.get('/getTodoS2',async(req,res)=>{
+    const uid=req.body.user._id;
+    console.log(uid);
+    Todo.find({userId:uid},(err,data)=>{
+        if(err)throw error;
+
+        var filtered = data.filter(function(todo) {
+
+            let date2 = new Date();
+            let date1= todo.startDate;
+            const diffTime = Math.abs(date2 - date1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            console.log(diffDays + " days");
+           // return 1;
+             return (diffDays<=1 && todo.stage==2); 
+        });
+        res.json(filtered);
+    });
+});
+
+router.get('/getTodoS3',async(req,res)=>{
+    const uid=req.body.user._id;
+    console.log(uid);
+    Todo.find({userId:uid},(err,data)=>{
+        if(err)throw error;
+
+        var filtered = data.filter(function(todo) {
+
+            let date2 = new Date();
+            let date1= todo.startDate;
+            const diffTime = Math.abs(date2 - date1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            console.log(diffDays + " days");
+           // return 1;
+             return (diffDays<=1 && todo.stage==3); 
         });
         res.json(filtered);
     });
@@ -81,6 +121,61 @@ router.post('/todo',(req,res)=>{
     });
     res.json(`added`);
 });
+
+
+
+
+router.post('/updateTodoS1/:idA',(req,res)=>{
+
+      let id = req.params.idA;
+      console.log(id);
+      Todo.findById(id, (err, todos)=> {
+      if (err){
+        console.log(err);
+      }
+      else{
+        
+        var cropId=todos.cropId;
+        var s1=0;
+
+        Crop.findById(cropId, (err, crop)=> {
+            if (err){
+              console.log(err);
+            }
+            else{
+              s1=crop.s1;
+          }
+        });
+
+        var nd = new Date();
+        nd.setDate(nd.getDate() + s1);
+
+        todos.startDate=nd;
+        todos.stage=2;
+        todos.save();
+      }
+        res.json(`updated`);
+    });
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
