@@ -8,20 +8,25 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
+import { BASE_API_URL } from "../../constant";
 
 const defaultValues = {
-    name: "",
-    parcels: null,
-    areaofparcel: null,
+    plotname:"",
+    parcelCnt:null,
+    parcelLength:null,
+    parcelWidth:null,
+    parcels:[],
+    demand:[],
+    supply:[],
 };
 
-export default function Plot() {
-   
+export default function Form({ onFormSubmit }) {
+
     const [formValues, setFormValues] = useState(defaultValues);
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name+ " "+ value);
+        // console.log(name+ " "+ value);
         setFormValues({
           ...formValues,
           [name]: value,
@@ -30,63 +35,65 @@ export default function Plot() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("handleSumbitClicked");
         console.log(formValues);
-        // idhar axios call ayega database mai update karne keleye 
-        // ( async()=>{
-        //     const plot = await axios.get('http://localhost:5000/createplot',{
-        //         withCredentials:true,
-        //     });
-        // })();
-        
-        // after adding new plot details 
-        // set the formvalues default again -- basically refresh form 
-
-
-        // so as we are doing axios call here i don't think we need use effect now . 
+        onFormSubmit(formValues);
     };
+
 
     // useEffect(()=>{
     // },[]);
 
-
-    return (        
+    return (
         <div  >
-            <div className='plot-form'> 
+            <div className='plot-form'>
            <form onSubmit={handleSubmit}>
                 <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item>
-                    <InputLabel shrink htmlFor="name-input"> Name Of The Plot </InputLabel>
+                    <InputLabel shrink htmlFor="plotname-input"> Plot Name </InputLabel>
                         <TextField
-                            id="name-input"
-                            name="name"
-                            label="Name"
+                            id="plotname-input"
+                            name="plotname"
+                            label="plot Name"
                             type="text"
-                            value={formValues.name}
-                            onChange={handleNameChange}
+                            value={formValues.plotname}
+                            onChange={handleChange}
                         />
                     </Grid>
                     <br/>
                     <Grid item>
-                    <InputLabel shrink htmlFor="noofparcels-input"> Number Of Parcels </InputLabel>
+                    <InputLabel shrink htmlFor="Total Number of Parcels-input"> Total Number of Parcels </InputLabel>
                         <TextField
-                            id="noofparcel-input"
-                            name="parcels"
-                            label="No of Parcels"
+                            id="Total Number of Parcels-input"
+                            name="parcelCnt"
+                            label="Total Number of Parcels"
                             type="number"
-                            value={formValues.parcels}
-                            onChange={handleParcelsChange}
+                            value={formValues.parcelCnt}
+                            onChange={handleChange}
                         />
                     </Grid>
                     <br/>
                     <Grid item>
-                    <InputLabel shrink htmlFor="area-input"> Area Of the Plots </InputLabel>
+                    <InputLabel shrink htmlFor=" Length Of Each Parcel-input">  Length Of Each Parcel </InputLabel>
                         <TextField
-                            id="area-input"
-                            name="areaofparcel"
-                            label="Area of Parcel"
+                            id=" Length Of Each Parcel-input"
+                            name="parcelLength"
+                            label=" Length Of Each Parcel"
                             type="number"
-                            value={formValues.areaofparcel}
-                            onChange={handleAreaChange}
+                            value={formValues.parcelLength}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <br />
+                    <Grid item>
+                    <InputLabel shrink htmlFor="Width of Each Parcel-input"> Width of Each Parcel </InputLabel>
+                        <TextField
+                            id="Width of Each Parcel-input"
+                            name="parcelWidth"
+                            label="Width of Each Parcel"
+                            type="number"
+                            value={formValues.parcelWidth}
+                            onChange={handleChange}
                         />
                     </Grid>
                     <br />

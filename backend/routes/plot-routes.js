@@ -38,7 +38,7 @@ router.post('/createPlot',(req,res)=>{
         parcelWidth:parcelWidth,
 	});
 
-    newPlot.save();
+    // newPlot.save();
 
 
 
@@ -64,6 +64,7 @@ router.post('/createPlot',(req,res)=>{
         user.plots.push(newPlot._id);
         console.log(newPlot._id);
         user.save();
+        res.json(`added`);
     });
 });
 

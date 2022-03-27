@@ -20,17 +20,17 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-// import "./Demo.css"
+import "./Plot.css"
 import Autocomplete from "@mui/material/Autocomplete";
 import { minWidth } from "@mui/system";
 
 import { BASE_API_URL } from "../../constant";
+import Navbar from '../../Components/Navbar/Navbar';
+import Plotcard from "../../Components/Plotcard/Plotcard";
 
-export default function Crop() {
+export default function Plot() {
   const [skipDBCall, setSkipDBCall] = useState(false);
   const [data, setData] = useState();
-  const [tableData, setTableData] = useState();
-  const [diff, setDiff] = useState("All");
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -45,43 +45,21 @@ export default function Crop() {
 
   const theme = useTheme();
 
-//   useEffect(() => {
-//     if (!skipDBCall) {
-//       console.log("DB CALL");
+  useEffect(() => {
+    if (!skipDBCall) {
+      console.log("DB CALL");
 
-//       ( async()=>{
-//           const notes = await axios.get(`${BASE_API_URL}/getAllNotes`,{
-//               withCredentials:true,
-//           });
-//           const nd = await notes.data;
-//           setSkipDBCall(true);
-//           setData(nd);
-//           setTableData(nd);
-//           const tt = [];
-//           nd.forEach((n)=>{
-//               tt.push(n.title);
-//           });
-//           setAvailTitles(tt);
-//       })();
-
-//       ( async()=>{
-//           const ts = await axios.get(`${BASE_API_URL}/getTags`,{
-//               withCredentials:true,
-//           });
-//           const ut = await ts.data;
-//           setAvailTags(ut);
-//       })();
-//     }
-//     // else{
-//     //     setSkipDBCall(true);
-//     //     setData(null);
-//     //     setTableData(null);
-//     //     setAvailTitles(null);
-//     //     setAvailTags(null);
-
-//     // }
-//     //    setTableData(filterData(data,filter));
-//   }, [filter]);
+      ( async()=>{
+          const Plots = await axios.get(`${BASE_API_URL}/getAllPlots`,{
+              withCredentials:true,
+          });
+          const nd = await Plots.data;
+          console.log(nd);
+          setSkipDBCall(true);
+          setData(nd);
+      })();
+    }
+  });
 
   function getStyles(tag, tags, theme) {
     return {
@@ -93,10 +71,18 @@ export default function Crop() {
   }
 
   return (
-    <div style={{ width: "1000px" }}>
-      <p align="center" className="hnote">
-        My Notes
-      </p>
+    <>
+    <Navbar/>
+    
+    <div >
+      <h1 align="center" className="hnote">
+        My Plots  <Plotcard 
+                    onChange={(value) => {
+                      setData(value);
+                    }} 
+                  />
+      </h1>
+     
       <br />
       <br />
       <br />
@@ -104,15 +90,9 @@ export default function Crop() {
       <br />
       <Table
         onChange={(value) => {
-        //   setTableData(value);
-        //   setData(value);
-          const tt = [];
-          value.forEach((n) => {
-            tt.push(n.title);
-          });
-        //   setAvailTitles(tt);
+          setData(value);
         }}
-        notes={tableData}
+        plots={data}
       />
 
       <br />
@@ -121,5 +101,6 @@ export default function Crop() {
       <br />
       <br />
     </div>
+    </>
   );
 }

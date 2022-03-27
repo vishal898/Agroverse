@@ -3,13 +3,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import "./Plotcard.css";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-import "./Cropcard.css";
-
-import Cropform from "../../pages/Crop/Form"; 
 import { BASE_API_URL } from "../../constant";
+
+import Plotform from "../../pages/Plot/Form"; 
 
 const style = {
   position: 'absolute',
@@ -23,7 +22,7 @@ const style = {
   p: 4,
 };
 
-export default function Cropcard(props) {
+export default function Plotcard(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -32,23 +31,22 @@ export default function Cropcard(props) {
     // e.preventDefault();
     console.log("onFormSubmit Clicked in model");
     ( async()=>{
-      const crop = await axios.post(`${BASE_API_URL}/createCrop`,formValues,{
+      const plot = await axios.post(`${BASE_API_URL}/createPlot`,formValues,{
+        withCredentials:true,
+      });
+      const plots = await axios.get(`${BASE_API_URL}/getAllPlots`,{
           withCredentials:true,
       });
-      const crops = await axios.get(`${BASE_API_URL}/getAllcrops`,{
-          withCredentials:true,
-      });
-      const nd = await crops.data;
+      const nd = await plots.data;
       console.log(nd);
       props.onChange(nd);
       handleClose();
     })();
   };
 
-
   return (
     <div>
-      <button className="add" onClick={handleOpen}>Add Crop</button>
+      <button className="add" onClick={handleOpen}>Add Plot</button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -56,7 +54,7 @@ export default function Cropcard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Cropform  onFormSubmit = {onFormSubmit}/>
+          <Plotform  onFormSubmit = {onFormSubmit}/>
         </Box>
       </Modal>
     </div>
