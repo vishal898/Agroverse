@@ -19,25 +19,7 @@ export default function Plot() {
    
     const [formValues, setFormValues] = useState(defaultValues);
     
-    const handleNameChange = (e) => {
-        const { name, value } = e.target;
-        console.log(name+ " "+ value);
-        setFormValues({
-          ...formValues,
-          [name]: value,
-        });
-    };
-
-    const handleParcelsChange = (e) => {
-        const { name, value } = e.target;
-        console.log(name+ " "+ value);
-        setFormValues({
-          ...formValues,
-          [name]: value,
-        });
-    };
-
-    const handleAreaChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         console.log(name+ " "+ value);
         setFormValues({

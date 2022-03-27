@@ -18,11 +18,16 @@ const style = {
   p: 4,
 };
 
-export default function Cropcard(props) {
-  console.log(props);
+export default function Cropcard() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("onFormSubmit Clicked");
+    handleClose();
+  };
 
   return (
     <div>
@@ -34,7 +39,7 @@ export default function Cropcard(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Cropform/>
+          <Cropform  onFormSubmit = {onFormSubmit}/>
         </Box>
       </Modal>
     </div>
