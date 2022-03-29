@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { findOneAndUpdate } = require("../models/todo");
 const Crop = require('../models/crop');
 const User = require('../models/user');
-const User = require('../models/todo');
+const Todo = require('../models/todo');
 
 
 router.get('/getTodoS1',async(req,res)=>{
