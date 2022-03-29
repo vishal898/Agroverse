@@ -64,7 +64,7 @@ export default function Form({ onFormSubmit }) {
                     </Grid>
                     <br/>
                     <Grid item>
-                    <DesktopDatePicker
+                    {/* <DesktopDatePicker
                         label=""
                         value={value}
                         minDate={new Date('2022-03-27')}
@@ -72,7 +72,7 @@ export default function Form({ onFormSubmit }) {
                             setValue(newValue);
                         }}
                         renderInput={(params) => <TextField {...params} />}
-                    />
+                    /> */}
                     </Grid> 
                     <br/>
                     <Grid item>

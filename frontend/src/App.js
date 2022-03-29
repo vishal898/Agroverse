@@ -20,14 +20,10 @@ const App=()=> {
      <Route path='/' element={<Glogin/>} /> 
      <Route path='/crop' element={<Crop/>} /> 
      <Route path='/user' element={<User/>} /> 
-<<<<<<< HEAD
      <Route  path='/todo' element={<Todo/>}/>
   
-      <Route  path='/plot' element={<Plot/>}/>
-=======
      <Route  path='/plot' element={<Plot/>}/>
      <Route  path='/demand' element={<Demand/>}/>
->>>>>>> 8b0a7c565cee467d9f933392ce384bf7d5a009ee
       
 
     
