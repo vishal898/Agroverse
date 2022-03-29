@@ -34,19 +34,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables(props) {
-  const crops = props.crops;
+  const demands = props.demands;
 
-  const handleDeleteChange = (cropId)=>{
-    console.log(cropId);
+  const handleDeleteChange = (demandId)=>{
+    console.log(demandId);
     ( async()=>{
-        const delData = await axios.post(`${BASE_API_URL}/deleteCrop/${cropId}`,{
+        const delData = await axios.post(`${BASE_API_URL}/deletedemand/${demandId}`,{
           withCredentials:true,
         });
         console.log(delData);
-        const crops = await axios.get(`${BASE_API_URL}/getAllcrops`,{
+        const demands = await axios.get(`${BASE_API_URL}/getAllDemands`,{
             withCredentials:true,
         });
-        const nd = await crops.data;
+        const nd = await demands.data;
         console.log(nd);
         props.onChange(nd);
     })();
@@ -57,7 +57,7 @@ export default function CustomizedTables(props) {
   return (
     <>
       <div className="tabht">
-        {crops ? (
+        {demands ? (
           <>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -66,47 +66,44 @@ export default function CustomizedTables(props) {
                     <StyledTableCell style={{ width: 15 }}>
                       Sr. No.
                     </StyledTableCell>
-                    <StyledTableCell align="center">Crop Name</StyledTableCell>
-                    <StyledTableCell align="center">S1 </StyledTableCell>
-                    <StyledTableCell align="center">S2 </StyledTableCell>
-                    <StyledTableCell align="center">S3 </StyledTableCell>
-                    <StyledTableCell align="center">ProdPer5 </StyledTableCell>
+                    <StyledTableCell align="center">demand Name</StyledTableCell>
+                    <StyledTableCell align="center">Total Number of Parcels </StyledTableCell>
+                    <StyledTableCell align="center"> Length Of Each Parcel </StyledTableCell>
+                    <StyledTableCell align="center"> Width of Each Parcel  </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {crops.map((crop, ind) => (
-                    // console.log(crop);
+                  {demands.map((demand, ind) => (
+                    // console.log(demand);
 
-                    <StyledTableRow key={crop._id}>
+                    <StyledTableRow key={demand._id}>
                       <StyledTableCell
                         component="th"
-                        scope="crop"
+                        scope="demand"
                         style={{ width: 15 }}
                       >
                         {" "}
                         {ind + 1}{" "}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                      {crop.cropname}
+                      {demand.demandname}
+                       
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {crop.s1}
+                        {demand.parcelCnt}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {crop.s2}
+                        {demand.parcelLength}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {crop.s3}
-                      </StyledTableCell>
-                      <StyledTableCell id="diff" align="center">
-                        {crop.prodPer5}
+                        {demand.parcelWidth}
                       </StyledTableCell>
                       <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
                         <Button
                           onClick={ ()=>{
-                            console.log(crop._id);
-                            handleDeleteChange(crop._id);
+                            console.log(demand._id);
+                            handleDeleteChange(demand._id);
                           }}
                           color="secondary" >
                           DELETE

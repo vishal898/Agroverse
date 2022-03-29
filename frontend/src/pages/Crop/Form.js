@@ -12,10 +12,10 @@ import InputLabel from '@mui/material/InputLabel';
 
 const defaultValues = {
     cropname:"",
-    s1:0,
-    s2:0,
-    s3:0,
-    prodPer5:0,
+    s1:null,
+    s2:null,
+    s3:null,
+    prodPer5:null,
     demand:[],
     supply:[],
 };
@@ -33,24 +33,13 @@ export default function Form({ onFormSubmit }) {
         });
     };
 
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("handleSumbitClicked");
         console.log(formValues);
-        onFormSubmit();
-        console.log("handleSumbitClicked2");
-        // idhar axios call ayega database mai update karne keleye
-        ( async()=>{
-            const plot = await axios.post('http://localhost:5000/createcrop',formValues,{
-                withCredentials:true,
-            });
-            
-        })();
-
-        // after adding new plot details
-        // set the formvalues default again -- basically refresh form
-
-        // so as we are doing axios call here i don't think we need use effect now .
+        onFormSubmit(formValues);
     };
 
     // useEffect(()=>{

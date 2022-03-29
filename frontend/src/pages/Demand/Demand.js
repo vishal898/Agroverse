@@ -20,15 +20,15 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import "./Crop.css"
+import "./Demand.css"
 import Autocomplete from "@mui/material/Autocomplete";
 import { minWidth } from "@mui/system";
 
 import { BASE_API_URL } from "../../constant";
 import Navbar from '../../Components/Navbar/Navbar';
-import Cropcard from "../../Components/Cropcard/Cropcard";
+import Demandcard from "../../Components/Demandcard/Demandcard";
 
-export default function Crop() {
+export default function Demand() {
   const [skipDBCall, setSkipDBCall] = useState(false);
   const [data, setData] = useState();
 
@@ -50,10 +50,10 @@ export default function Crop() {
       console.log("DB CALL");
 
       ( async()=>{
-          const crops = await axios.get(`${BASE_API_URL}/getAllCrops`,{
+          const Demands = await axios.get(`${BASE_API_URL}/getAllDemands`,{
               withCredentials:true,
           });
-          const nd = await crops.data;
+          const nd = await Demands.data;
           console.log(nd);
           setSkipDBCall(true);
           setData(nd);
@@ -76,7 +76,7 @@ export default function Crop() {
     
     <div >
       <h1 align="center" className="hnote">
-        My crops  <Cropcard 
+        My Demands  <Demandcard 
                     onChange={(value) => {
                       setData(value);
                     }} 
@@ -92,7 +92,7 @@ export default function Crop() {
         onChange={(value) => {
           setData(value);
         }}
-        crops={data}
+        demands={data}
       />
 
       <br />
