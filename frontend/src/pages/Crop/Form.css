@@ -1,0 +1,19 @@
+.grid {
+  /* border: 2px;
+    border-style: double; */
+  padding-top: 50px;
+  padding-bottom: 50px;
+  left: 0;
+  width: 100%;
+}
+
+.formDiv {
+  padding: 0px;
+  width: 100%;
+}
+.inp {
+  width: 100%;
+}
+TextField {
+  width: 100%;
+}

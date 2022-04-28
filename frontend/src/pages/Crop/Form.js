@@ -8,7 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
-
+import "./Form.css"
 
 const defaultValues = {
     cropname:"",
@@ -47,7 +47,7 @@ export default function Form({ onFormSubmit }) {
 
     return (
         <div  >
-            <div className='plot-form'>
+            <div className='plot-form formDiv'>
            <form onSubmit={handleSubmit}>
                 <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item>
@@ -64,7 +64,7 @@ export default function Form({ onFormSubmit }) {
                     <br/>
                     <Grid item>
                     <InputLabel shrink htmlFor="s1-input"> S1 </InputLabel>
-                        <TextField
+                        <TextField className="inp"
                             id="s1-input"
                             name="s1"
                             label="s1"
@@ -76,7 +76,7 @@ export default function Form({ onFormSubmit }) {
                     <br/>
                     <Grid item>
                     <InputLabel shrink htmlFor="s2-input"> S2 </InputLabel>
-                        <TextField
+                        <TextField className="inp"
                             id="s2-input"
                             name="s2"
                             label="s2"
@@ -88,7 +88,7 @@ export default function Form({ onFormSubmit }) {
                     <br />
                     <Grid item>
                     <InputLabel shrink htmlFor="s3-input"> S3 </InputLabel>
-                        <TextField
+                        <TextField className="inp"
                             id="s3-input"
                             name="s3"
                             label="s3"
@@ -100,7 +100,7 @@ export default function Form({ onFormSubmit }) {
                     <br />
                     <Grid item>
                     <InputLabel shrink htmlFor="prodPer5-input"> Production Per 5 Crops </InputLabel>
-                        <TextField
+                        <TextField className="inp"
                             id="prodPer5-input"
                             name="prodPer5"
                             label="prodPer5"
@@ -112,7 +112,7 @@ export default function Form({ onFormSubmit }) {
                     <br />
                     <Grid item>
                     <InputLabel shrink htmlFor="areaPer5-input"> Area Per 5 Plants </InputLabel>
-                        <TextField
+                        <TextField className="inp"
                             id="areaPer5-input"
                             name="areaPer5"
                             label="areaPer5"
