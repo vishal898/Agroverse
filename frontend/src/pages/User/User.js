@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from '../../Components/Navbar/Navbar';
 import './User.css';
-// import {BASE_API_URL} from '../../constant';
+import {BASE_API_URL} from '../../constant';
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 const User = () => {
@@ -18,7 +18,7 @@ const User = () => {
     //   setUser(profile.data[0]);
     //   setLoading(false);
 
-    const profile = await axios.get(`http://localhost:5000/profile`, 
+    const profile = await axios.get(`${BASE_API_URL}/profile`, 
       {withCredentials:true});
       setUser(profile.data[0]);
       setLoading(false);

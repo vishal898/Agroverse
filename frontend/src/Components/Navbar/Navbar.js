@@ -40,6 +40,10 @@ const Navbar = () => {
               <NavLink to="/plot">Plot</NavLink>
             </li>
             <li>
+              <NavLink to="/todo">To-do</NavLink>
+              <NavLink to="/demand">Demand</NavLink>
+            </li>
+            <li>
               <NavLink to="/user">User</NavLink>
             </li>
             {/* <li> <NavLink to="/user">

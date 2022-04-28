@@ -10,14 +10,16 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import { BASE_API_URL } from "../../constant";
 
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
+
 const defaultValues = {
-    plotname:"",
-    parcelCnt:null,
-    parcelLength:null,
-    parcelWidth:null,
-    parcels:[],
-    demand:[],
-    supply:[],
+    cropId:"",
+    q:null,
+    date1:null,
+    date2:null
 };
 
 export default function Form({ onFormSubmit }) {
@@ -50,28 +52,28 @@ export default function Form({ onFormSubmit }) {
            <form onSubmit={handleSubmit}>
                 <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item>
-                    <InputLabel shrink htmlFor="plotname-input"> Plot Name </InputLabel>
+                    <InputLabel shrink htmlFor="plotname-input"> Crop Name </InputLabel>
                         <TextField
                             id="plotname-input"
                             name="plotname"
                             label="plot Name"
                             type="text"
-                            value={formValues.plotname}
+                            value={formValues.cropId}
                             onChange={handleChange}
                         />
                     </Grid>
                     <br/>
                     <Grid item>
-                    <InputLabel shrink htmlFor="Total Number of Parcels-input"> Total Number of Parcels </InputLabel>
-                        <TextField
-                            id="Total Number of Parcels-input"
-                            name="parcelCnt"
-                            label="Total Number of Parcels"
-                            type="number"
-                            value={formValues.parcelCnt}
-                            onChange={handleChange}
-                        />
-                    </Grid>
+                    {/* <DesktopDatePicker
+                        label=""
+                        value={value}
+                        minDate={new Date('2022-03-27')}
+                        onChange={(newValue) => {
+                            setValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                    /> */}
+                    </Grid> 
                     <br/>
                     <Grid item>
                     <InputLabel shrink htmlFor=" Length Of Each Parcel-input">  Length Of Each Parcel </InputLabel>
@@ -106,3 +108,24 @@ export default function Form({ onFormSubmit }) {
         </div>
     )
 }
+
+// export default function ResponsiveDatePickers() {
+//   const [value, setValue] = React.useState(new Date());
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDateFns}>
+//       <Stack spacing={3}>
+        
+//         <DesktopDatePicker
+//           label="For desktop"
+//           value={value}
+//           minDate={new Date('2022-03-27')}
+//           onChange={(newValue) => {
+//             setValue(newValue);
+//           }}
+//           renderInput={(params) => <TextField {...params} />}
+//         />
+        
+//     </Stack>
+//     </LocalizationProvider>
+//   );
+// }

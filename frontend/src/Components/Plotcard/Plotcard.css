@@ -1,0 +1,11 @@
+.add {
+  border-radius: 32px;
+  padding: 5px 10px;
+  color: white;
+  background: linear-gradient(to bottom right, #3bb0b4, #11a5a5);
+  margin-left: 65%;
+  cursor: pointer;
+  margin-bottom: -3%;
+
+  border-style: hidden;
+}
