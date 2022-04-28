@@ -14,7 +14,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
-
+import "./Form.css"
 const defaultValues = {
     cropId:"",
     q:null,
@@ -48,10 +48,10 @@ export default function Form({ onFormSubmit }) {
 
     return (
         <div  >
-            <div className='plot-form'>
+            <div className='plot-form formDiv'>
            <form onSubmit={handleSubmit}>
-                <Grid container alignItems="center" justify="center" direction="column">
-                    <Grid item>
+                <Grid className="grid" container alignItems="center" justify="center" direction="column">
+                    <Grid item className="inp">
                     <InputLabel shrink htmlFor="plotname-input"> Crop Name </InputLabel>
                         <TextField
                             id="plotname-input"
@@ -63,7 +63,7 @@ export default function Form({ onFormSubmit }) {
                         />
                     </Grid>
                     <br/>
-                    <Grid item>
+                    <Grid item className="inp">
                     {/* <DesktopDatePicker
                         label=""
                         value={value}
@@ -75,7 +75,7 @@ export default function Form({ onFormSubmit }) {
                     /> */}
                     </Grid> 
                     <br/>
-                    <Grid item>
+                    <Grid item className="inp">
                     <InputLabel shrink htmlFor=" Length Of Each Parcel-input">  Length Of Each Parcel </InputLabel>
                         <TextField
                             id=" Length Of Each Parcel-input"
@@ -87,7 +87,7 @@ export default function Form({ onFormSubmit }) {
                         />
                     </Grid>
                     <br />
-                    <Grid item>
+                    <Grid item className="inp">
                     <InputLabel shrink htmlFor="Width of Each Parcel-input"> Width of Each Parcel </InputLabel>
                         <TextField
                             id="Width of Each Parcel-input"
