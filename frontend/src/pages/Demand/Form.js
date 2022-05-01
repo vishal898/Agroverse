@@ -25,6 +25,7 @@ const defaultValues = {
 export default function Form({ onFormSubmit }) {
 
     const [formValues, setFormValues] = useState(defaultValues);
+    const [crops, setCrops] = useState([]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,11 +44,14 @@ export default function Form({ onFormSubmit }) {
     };
 
 
-    // useEffect(()=>{
-    // },[]);
+    useEffect(()=>{
+
+
+
+    },[]);
 
     return (
-        <div  >
+        <div>
             <div className='plot-form formDiv'>
            <form onSubmit={handleSubmit}>
                 <Grid className="grid" container alignItems="center" justify="center" direction="column">
@@ -60,6 +64,7 @@ export default function Form({ onFormSubmit }) {
                             type="text"
                             value={formValues.cropId}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br/>
@@ -84,6 +89,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.parcelLength}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
@@ -96,6 +102,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.parcelWidth}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />

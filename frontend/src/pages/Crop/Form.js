@@ -59,6 +59,7 @@ export default function Form({ onFormSubmit }) {
                             type="text"
                             value={formValues.cropname}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br/>
@@ -71,6 +72,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.s1}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br/>
@@ -83,6 +85,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.s2}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
@@ -95,6 +98,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.s3}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
@@ -107,6 +111,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.prodPer5}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
@@ -119,6 +124,7 @@ export default function Form({ onFormSubmit }) {
                             type="number"
                             value={formValues.areaPer5}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
