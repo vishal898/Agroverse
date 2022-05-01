@@ -66,10 +66,10 @@ export default function CustomizedTables(props) {
                     <StyledTableCell style={{ width: 15 }}>
                       Sr. No.
                     </StyledTableCell>
-                    <StyledTableCell align="center">demand Name</StyledTableCell>
-                    <StyledTableCell align="center">Total Number of Parcels </StyledTableCell>
-                    <StyledTableCell align="center"> Length Of Each Parcel </StyledTableCell>
-                    <StyledTableCell align="center"> Width of Each Parcel  </StyledTableCell>
+                    <StyledTableCell align="center">Demand Name</StyledTableCell>
+                    <StyledTableCell align="center"> Start Date </StyledTableCell>
+                    <StyledTableCell align="center"> End Date </StyledTableCell>
+                    <StyledTableCell align="center"> Quantity  </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -87,8 +87,7 @@ export default function CustomizedTables(props) {
                         {ind + 1}{" "}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                      {demand.demandname}
-                       
+                        {demand.demandname}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
                         {demand.parcelCnt}
