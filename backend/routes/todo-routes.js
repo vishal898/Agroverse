@@ -137,6 +137,7 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
         
         var cropId=todos.cropId;
         var s1=0;
+        var q=todos.quantity;
 
         Crop.findById(cropId, (err, crop)=> {
             if (err){
@@ -144,6 +145,38 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
             }
             else{
               s1=crop.s1;
+              s2=crop.s2;
+              s3=crop.s3;
+
+
+                var dateD = new Date ("Jan 01, 2000, 00:00:01");  
+                var date11=new Date();
+
+                var total_seconds = Math.abs(date11 - dateD) / 1000;  
+                console.log(total_seconds);
+                //calculate days difference by dividing total seconds in a day  
+                var day1 = Math.floor (total_seconds / (60 * 60 * 24));  
+                day1%=366;
+                var day2=day1;
+                day1=day1+s1+s2;
+                day2=day1+s1+s2+s3;
+                day1%=366;
+                day2%=366;
+
+                if(day1<=day2)
+                {
+                    for(var i=day1;i<=day2;i++)
+                        crop.supply[i]+=q;
+                }
+                else
+                {
+                    for(var i=day1;i<=365;i++)
+                        crop.supply[i]+=q;
+                    for(var i=0;i<=day2;i++)
+                        crop.supply[i]+=q;
+
+                }
+                crop.save();
           }
         });
 
@@ -158,6 +191,11 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
     });
     
 });
+
+
+
+
+
 
 
 
