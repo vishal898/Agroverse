@@ -8,6 +8,8 @@ import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import { BASE_API_URL } from "../../constant";
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -25,10 +27,13 @@ const defaultValues = {
 export default function Form({ onFormSubmit }) {
 
     const [formValues, setFormValues] = useState(defaultValues);
+    const [crops, setCrops] = useState([]);
+    const [boolVal, setBoolVal] = useState(false);
+    const [isLoading, setLoading] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(name+ " "+ value);
+        console.log(name+ " "+ value);
         setFormValues({
           ...formValues,
           [name]: value,
@@ -42,60 +47,95 @@ export default function Form({ onFormSubmit }) {
         onFormSubmit(formValues);
     };
 
+    const fetchAllCrops = async () => {
+        try {
+            setLoading(true);
+            let condition = {active: true}
+            const cs = await axios.get(`${BASE_API_URL}/getAllCrops`,{withCredentials:true});
+            console.log(cs.data);
+            crops?.map((crop) => {
+                console.log(crop);
+            });
+            setCrops(cs.data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log(error);
+        }
+    };
 
-    // useEffect(()=>{
-    // },[]);
 
+    useEffect(() => {
+        if (!boolVal) {
+            fetchAllCrops();
+            setBoolVal(true);
+        }
+    }, [boolVal]);
+
+    if (isLoading) return "Loading...";
+    else {
     return (
-        <div  >
+        <div>
             <div className='plot-form formDiv'>
            <form onSubmit={handleSubmit}>
                 <Grid className="grid" container alignItems="center" justify="center" direction="column">
                     <Grid item className="inp">
                     <InputLabel shrink htmlFor="plotname-input"> Crop Name </InputLabel>
-                        <TextField
-                            id="plotname-input"
-                            name="plotname"
-                            label="plot Name"
-                            type="text"
+
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
                             value={formValues.cropId}
+                            name ="cropId"
+                            label="cropName"
                             onChange={handleChange}
-                        />
+                            style = {{width: 300}}
+                        >
+                            {/* {console.log(crops)} */}
+                            {
+                                crops?.map((crop) => (
+                                    <MenuItem value={crop._id} key={crop._id}>
+                                        {crop.cropname}
+                                    </MenuItem>
+                                ))
+                            }
+                        </Select>
                     </Grid>
                     <br/>
                     <Grid item className="inp">
-                    {/* <DesktopDatePicker
-                        label=""
-                        value={value}
-                        minDate={new Date('2022-03-27')}
-                        onChange={(newValue) => {
-                            setValue(newValue);
-                        }}
+                    <InputLabel shrink htmlFor=" Start Date-input">  Start Date </InputLabel>
+                    <input
+                        name="date1"
+                        type="date"
+                        value={formValues.date1}
+                        minDate={new Date()}
+                        onChange={handleChange}
                         renderInput={(params) => <TextField {...params} />}
-                    /> */}
+                    />
                     </Grid> 
                     <br/>
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor=" Length Of Each Parcel-input">  Length Of Each Parcel </InputLabel>
-                        <TextField
-                            id=" Length Of Each Parcel-input"
-                            name="parcelLength"
-                            label=" Length Of Each Parcel"
-                            type="number"
-                            value={formValues.parcelLength}
-                            onChange={handleChange}
-                        />
+                    <InputLabel shrink htmlFor=" END Date-input">  END Date </InputLabel>
+                    <input
+                        name="date2"
+                        type="date"
+                        value={formValues.date2}
+                        minDate={new Date()}
+                        onChange={handleChange}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
                     </Grid>
                     <br />
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor="Width of Each Parcel-input"> Width of Each Parcel </InputLabel>
+                    <InputLabel shrink htmlFor="Quantity-input"> Quantity </InputLabel>
                         <TextField
-                            id="Width of Each Parcel-input"
-                            name="parcelWidth"
-                            label="Width of Each Parcel"
+                            id="Quantity-input"
+                            name="q"
+                            label="Quantity"
                             type="number"
-                            value={formValues.parcelWidth}
+                            value={formValues.q}
                             onChange={handleChange}
+                            style = {{width: 300}}
                         />
                     </Grid>
                     <br />
@@ -108,24 +148,4 @@ export default function Form({ onFormSubmit }) {
         </div>
     )
 }
-
-// export default function ResponsiveDatePickers() {
-//   const [value, setValue] = React.useState(new Date());
-//   return (
-//     <LocalizationProvider dateAdapter={AdapterDateFns}>
-//       <Stack spacing={3}>
-        
-//         <DesktopDatePicker
-//           label="For desktop"
-//           value={value}
-//           minDate={new Date('2022-03-27')}
-//           onChange={(newValue) => {
-//             setValue(newValue);
-//           }}
-//           renderInput={(params) => <TextField {...params} />}
-//         />
-        
-//     </Stack>
-//     </LocalizationProvider>
-//   );
-// }
+}
