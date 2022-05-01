@@ -90,10 +90,10 @@ export default function CustomizedTables(props) {
                         {demand.demandname}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {demand.parcelCnt}
+                        {demand.date1}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {demand.parcelLength}
+                        {demand.date2}
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
                         {demand.parcelWidth}

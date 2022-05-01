@@ -31,7 +31,7 @@ export default function Demandcard(props) {
     // e.preventDefault();
     console.log("onFormSubmit Clicked in model");
     ( async()=>{
-      const Demand = await axios.post(`${BASE_API_URL}/createDemand`,formValues,{
+      const Demand = await axios.post(`${BASE_API_URL}/addDemand`,formValues,{
         withCredentials:true,
       });
       const Demands = await axios.get(`${BASE_API_URL}/getAllDemands`,{
