@@ -92,9 +92,14 @@ router.post('/addDemand',(req,res)=>{
     Crop.findById(cropId,(err,crop)=>{
       
         var dateD = new Date ("Jan 01, 2000, 00:00:01");  
-        var date11=new Date(date1);
-        var date22=new Date(date2);
 
+
+        const [year1,month1,day11] = date1.split('-');
+        var date11=new Date([month1, day11, year1].join('/'));
+        const [year2,month2,day22] = date2.split('-');
+        var date22=new Date([month2, day22, year2].join('/'));
+
+        
         //calculate total number of seconds between two dates
         console.log(date11);  
         console.log(dateD);  
