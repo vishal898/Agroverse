@@ -92,8 +92,13 @@ router.post('/addDemand',(req,res)=>{
     Crop.findById(cropId,(err,crop)=>{
       
         var dateD = new Date ("Jan 01, 2000, 00:00:01");  
-        var date11=new Date(date1);
-        var date22=new Date(date2);
+
+
+        const [year1,month1,day11] = date1.split('-');
+        var date11=new Date([month1, day11, year1].join('/'));
+        const [year2,month2,day22] = date2.split('-');
+        var date22=new Date([month2, day22, year2].join('/'));
+
 
         //calculate total number of seconds between two dates
         console.log(date11);  
@@ -119,14 +124,24 @@ router.post('/addDemand',(req,res)=>{
         if(day1<=day2)
         {
             for(var i=day1;i<=day2;i++)
-                crop.demand[i]+=q;
+            {
+                var x=crop.demand[i];
+                x=parseInt(x);
+                var z=parseInt(q);
+                x=x+z;
+                crop.demand[i]=x;
+            }
         }
         else
         {
+            var x=crop.demand[i];
+            x=parseInt(x);
+            var z=parseInt(q);
+            x=x+z;
             for(var i=day1;i<=365;i++)
-                crop.demand[i]+=q;
+                crop.demand[i]=x;
             for(var i=0;i<=day2;i++)
-                crop.demand[i]+=q;
+                crop.demand[i]=x;
 
         }
         crop.save();
