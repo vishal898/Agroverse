@@ -20,7 +20,7 @@ router.get('/getTodoS1',async(req,res)=>{
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             console.log(diffDays + " days");
-           // return 1;
+            // return 1;
              return (diffDays<=1 && todo.stage==1); 
         });
         res.json(filtered);
@@ -121,9 +121,6 @@ router.post('/todo',(req,res)=>{
     });
     res.json(`added`);
 });
-
-
-
 
 router.post('/updateTodoS1/:idA',(req,res)=>{
 
