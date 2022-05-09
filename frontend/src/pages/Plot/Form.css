@@ -1,0 +1,29 @@
+.inp {
+    width: 100%;
+    color:white;
+    font-size: large;
+    padding: 13px;
+  }
+  
+  
+  input:focus { 
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+  }
+  
+   .plot{
+   padding: 20px ;
+   padding-left: 25%;
+   margin: -64px;
+    background-image: linear-gradient(
+      to bottom right,
+      rgb(30, 133, 151),
+      rgb(28, 71, 95)
+    );
+   color:white;
+  
+   
+  
+    box-shadow: 0 4px 8px 0 rgba(87, 132, 150, 0.897);
+  }

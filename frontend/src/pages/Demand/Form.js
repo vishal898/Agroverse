@@ -2,12 +2,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
+import {InputLabel} from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { BASE_API_URL } from "../../constant";
@@ -23,7 +24,13 @@ const defaultValues = {
     date1:null,
     date2:null
 };
-
+const theme = createTheme => ({
+    select: {
+      "&:before": {
+        borderColor: "red"
+      }
+    }
+  });
 export default function Form({ onFormSubmit }) {
 
     const [formValues, setFormValues] = useState(defaultValues);
@@ -75,22 +82,26 @@ export default function Form({ onFormSubmit }) {
     if (isLoading) return "Loading...";
     else {
     return (
-        <div>
-            <div className='plot-form formDiv'>
-           <form onSubmit={handleSubmit}>
+        
+           
+           <form onSubmit={handleSubmit}  className=' demand'>
                 <Grid className="grid" container alignItems="center" justify="center" direction="column">
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor="plotname-input"> Crop Name </InputLabel>
-
+                    <InputLabel shrink htmlFor="plotname-input"style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}> Crop Name : </InputLabel>
+                   
                         <Select
+                        
+                        
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={formValues.cropId}
                             name ="cropId"
                             label="cropName"
                             onChange={handleChange}
-                            style = {{width: 300}}
+                            style = {{width: 300,backgroundColor:"inherit",  height: 40,
+                            borderRadius: "10px",borderColor:"lime"}}
                         >
+                           
                             {/* {console.log(crops)} */}
                             {
                                 crops?.map((crop) => (
@@ -100,52 +111,58 @@ export default function Form({ onFormSubmit }) {
                                 ))
                             }
                         </Select>
+                       
                     </Grid>
                     <br/>
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor=" Start Date-input">  Start Date </InputLabel>
+                    <InputLabel shrink htmlFor=" Start Date-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}>  Start Date : </InputLabel>
                     <input
+                    className="inp"
                         name="date1"
                         type="date"
                         value={formValues.date1}
                         minDate={new Date()}
                         onChange={handleChange}
+                        style = {{width: 300,backgroundColor:"inherit",  height: 40,
+                            borderRadius: "10px",borderColor:"lime"}}
                         renderInput={(params) => <TextField {...params} />}
                     />
                     </Grid> 
                     <br/>
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor=" END Date-input">  END Date </InputLabel>
-                    <input
+                    <InputLabel shrink htmlFor=" END Date-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}>  End Date : </InputLabel>
+                    <input className="inp"
                         name="date2"
                         type="date"
                         value={formValues.date2}
                         minDate={new Date()}
                         onChange={handleChange}
+                        style = {{width: 300,backgroundColor:"inherit",  height: 40,
+                            borderRadius: "10px",borderColor:"lime"}}
                         renderInput={(params) => <TextField {...params} />}
                     />
                     </Grid>
                     <br />
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor="Quantity-input"> Quantity </InputLabel>
-                        <TextField
+                    <InputLabel shrink htmlFor="Quantity-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}> Quantity : </InputLabel>
+                        <input className="inp"
                             id="Quantity-input"
                             name="q"
                             label="Quantity"
                             type="number"
                             value={formValues.q}
                             onChange={handleChange}
-                            style = {{width: 300}}
+                            style = {{width: 300,backgroundColor:"inherit",  height: 40,
+                            borderRadius: "10px",borderColor:"lime"}}
                         />
                     </Grid>
                     <br />
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button variant="contained" color="primary" type="submit" style={{marginTop: "15px" ,marginRight:"16%"}}>
                         Submit
                     </Button>
                 </Grid>
             </form>
-            </div>
-        </div>
+          
     )
 }
 }

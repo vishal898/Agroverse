@@ -24,6 +24,7 @@ router.get('/getTodoS1',async(req,res)=>{
              return (diffDays<=1 && todo.stage==1); 
         });
         res.json(filtered);
+        console.log(filtered)
     });
 });
 
@@ -44,6 +45,8 @@ router.get('/getTodoS2',async(req,res)=>{
              return (diffDays<=1 && todo.stage==2); 
         });
         res.json(filtered);
+        console.log(filtered)
+
     });
 });
 
@@ -64,6 +67,7 @@ router.get('/getTodoS3',async(req,res)=>{
              return (diffDays<=1 && todo.stage==3); 
         });
         res.json(filtered);
+        console.log(filtered)
     });
 });
 
