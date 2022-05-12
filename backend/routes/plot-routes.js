@@ -20,6 +20,35 @@ router.get('/getAllPlots',async(req,res)=>{
 });
 
 
+router.get('/getPermutation/:plotId/:cropId/:q',(req,res)=>{
+
+    const NID = req.params.plotId;
+   
+    console.log(NID);
+    Plot.find({_id:NID},(err,plot)=>{
+
+        
+     const array=plot.parcels;
+     const sz=plot.parcelCnt;
+     var ans=[1,1,1,1];
+
+     for(var i=0;i<array.length;i++)
+     {  
+            var par=array[i];
+
+            Plot.find({_id:par},(err,parcel)=>{
+
+                var prev1=parcel.prev1;
+                var prev2=parcel.prev2;
+
+
+            });
+     }
+     
+     res.send(ans);
+
+    });
+});
 
 // post create 
 router.post('/createPlot',(req,res)=>{
