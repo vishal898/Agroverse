@@ -31,7 +31,7 @@ const theme = createTheme => ({
       }
     }
   });
-export default function Form({ onFormSubmit }) {
+export default function Form() {
 
     const [formValues, setFormValues] = useState(defaultValues);
     const [crops, setCrops] = useState([]);
@@ -48,10 +48,15 @@ export default function Form({ onFormSubmit }) {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        // event.prevent    Default();
         console.log("handleSumbitClicked");
         console.log(formValues);
-        onFormSubmit(formValues);
+        ( async()=>{
+            const Demand = await axios.post(`${BASE_API_URL}/addDemand`,formValues,{
+              withCredentials:true,
+            });
+            alert("Demand Added Successfully");
+        })();
     };
 
     const fetchAllCrops = async () => {
