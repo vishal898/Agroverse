@@ -3,74 +3,52 @@ import { useEffect, useState } from "react";
 import TableS1 from "./TableS1";
 import TableS2 from "./TableS2";
 import TableS3 from "./TableS3";
-
 import * as React from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
-import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Checkbox from "@mui/material/Checkbox";
-import ListItemText from "@mui/material/ListItemText";
-
-import TextField from "@mui/material/TextField";
-
-import Divider from "@mui/material/Divider";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import "./todo.css"
-import Autocomplete from "@mui/material/Autocomplete";
-import { minWidth } from "@mui/system";
-
 import { BASE_API_URL } from "../../constant";
 import Navbar from '../../Components/Navbar/Navbar';
-import Plotcard from "../../Components/Plotcard/Plotcard";
+
 
 export default function Todo() {
   const [skipDBCall, setSkipDBCall] = useState(false);
-  const [data, setData] = useState();
-
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {  
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
-
-  const theme = useTheme();
+  const [dataS1, setDataS1] = useState();
+  const [dataS2, setDataS2] = useState();
+  const [dataS3, setDataS3] = useState();
 
   useEffect(() => {
     if (!skipDBCall) {
       console.log("DB CALL");
 
       ( async()=>{
-          const Plots = await axios.get(`${BASE_API_URL}/getAllPlots`,{
+          const S1 = await axios.get(`${BASE_API_URL}/getTodoS1`,{
               withCredentials:true,
           });
-          const nd = await Plots.data;
-          console.log(nd);
+          const s1 = await S1.dataS1; 
+          console.log(s1);
           setSkipDBCall(true);
-          setData(nd);
+          setDataS1(s1);
+
+          const S2 = await axios.get(`${BASE_API_URL}/getTodoS2`,{
+            withCredentials:true,
+        });
+        const s2 = await S2.dataS2;
+          console.log(s2);
+          setSkipDBCall(true);
+          setDataS2(s2);
+
+        const S3 = await axios.get(`${BASE_API_URL}/getTodoS3`,{
+          withCredentials:true,
+      });
+      const s3 = await S3.dataS3;
+          
+          console.log(s3);
+          setSkipDBCall(true);
+          setDataS3(s3);
+          
       })();
     }
   });
 
-  function getStyles(tag, tags, theme) {
-    return {
-      fontWeight:
-        tags.indexOf(tag) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-  }
+
 
   return (
     <>
@@ -90,9 +68,9 @@ export default function Todo() {
 <h1 style={{marginLeft:"13%"}}className="hnote">S1 :-</h1>
       <TableS1
         onChange={(value) => {
-          setData(value);
+          setDataS1(value);
         }}
-        plots={data}
+        S1={dataS1}
       />
 
       <br />
@@ -105,9 +83,9 @@ export default function Todo() {
 
       <TableS2
         onChange={(value) => {
-          setData(value);
+          setDataS2(value);
         }}
-        plots={data}
+        S2={dataS2}
       />
 
 <br />
@@ -119,9 +97,9 @@ export default function Todo() {
 <h1 style={{marginLeft:"13%"}} className="hnote">S3 :-</h1>
       <TableS3
         onChange={(value) => {
-          setData(value);
+          setDataS3(value);
         }}
-        plots={data}
+        S3={dataS3}
       />
     </div>
     </>
