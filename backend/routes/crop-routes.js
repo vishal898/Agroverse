@@ -145,6 +145,7 @@ router.post('/addDemand',(req,res)=>{
 
         }
         crop.save();
+        console.log("demand added successfully");
         res.json(`demand added`);
     });
 });

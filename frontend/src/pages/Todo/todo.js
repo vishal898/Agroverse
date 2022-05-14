@@ -52,9 +52,10 @@ export default function Todo() {
       console.log("DB CALL");
 
       ( async()=>{
-          const Plots = await axios.get(`${BASE_API_URL}/getAllPlots`,{
+          const Plots = await axios.get(`${BASE_API_URL}/getTodoS1`,{
               withCredentials:true,
           });
+          console.log(Plots);
           const nd = await Plots.data;
           console.log(nd);
           setSkipDBCall(true);

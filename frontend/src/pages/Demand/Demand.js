@@ -27,6 +27,7 @@ import { minWidth } from "@mui/system";
 import { BASE_API_URL } from "../../constant";
 import Navbar from '../../Components/Navbar/Navbar';
 import Demandcard from "../../Components/Demandcard/Demandcard";
+import Demandform from "../../pages/Demand/Form"; 
 
 export default function Demand() {
   const [skipDBCall, setSkipDBCall] = useState(false);
@@ -45,21 +46,21 @@ export default function Demand() {
 
   const theme = useTheme();
 
-  useEffect(() => {
-    if (!skipDBCall) {
-      console.log("DB CALL");
+  // useEffect(() => {
+  //   if (!skipDBCall) {
+  //     console.log("DB CALL");
 
-      ( async()=>{
-          const Demands = await axios.get(`${BASE_API_URL}/getAllDemands`,{
-              withCredentials:true,
-          });
-          const nd = await Demands.data;
-          console.log(nd);
-          setSkipDBCall(true);
-          setData(nd);
-      })();
-    }
-  });
+  //     ( async()=>{
+  //         const Demands = await axios.get(`${BASE_API_URL}/getAllDemands`,{
+  //             withCredentials:true,
+  //         });
+  //         const nd = await Demands.data;
+  //         console.log(nd);
+  //         setSkipDBCall(true);
+  //         setData(nd);
+  //     })();
+  //   }
+  // });
 
   function getStyles(tag, tags, theme) {
     return {
@@ -75,25 +76,25 @@ export default function Demand() {
     <Navbar/>
     
     <div >
-      <h1 align="center" className="hnote">
+      {/* <h1 align="center" className="hnote">
         My Demands  <Demandcard 
                     onChange={(value) => {
                       setData(value);
                     }} 
                   />
-      </h1>
-     
+      </h1> */}
+      <Demandform/>
       <br />
       <br />
       <br />
       <br />
       <br />
-      <Table
+      {/* <Table
         onChange={(value) => {
           setData(value);
         }}
         demands={data}
-      />
+      /> */}
 
       <br />
       <br />    
