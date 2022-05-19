@@ -8,7 +8,7 @@ const Todo = require('../models/todo');
 
 
 router.get('/getTodoS1',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
     //const uid=req.params.uid;
     console.log(uid);
     
@@ -32,7 +32,7 @@ router.get('/getTodoS1',async(req,res)=>{
 });
 
 router.get('/getTodoS2',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
     //const uid=req.params.uid;
     console.log(uid);
     
@@ -56,7 +56,7 @@ router.get('/getTodoS2',async(req,res)=>{
 });
 
 router.get('/getTodoS3',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
     //const uid=req.params.uid;
     console.log(uid);
     
@@ -94,7 +94,7 @@ router.post('/todo',(req,res)=>{
     
 
     console.log("in create todo");
-    const userId = req.body.user._id;
+    const userId = req.user._id;
     //const userId=req.params.uid;
 
     

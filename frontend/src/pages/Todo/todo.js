@@ -22,28 +22,27 @@ export default function Todo() {
           const S1 = await axios.get(`${BASE_API_URL}/getTodoS1`,{
               withCredentials:true,
           });
-          const s1 = await S1.dataS1; 
+          const s1 = await S1.data; 
           console.log(s1);
           setSkipDBCall(true);
           setDataS1(s1);
 
-          const S2 = await axios.get(`${BASE_API_URL}/getTodoS2`,{
-            withCredentials:true,
-        });
-        const s2 = await S2.dataS2;
+          const S2 = await axios.get(`${BASE_API_URL}/getTodoS2`, {
+            withCredentials: true,
+          });
+          const s2 = await S2.data;
           console.log(s2);
           setSkipDBCall(true);
           setDataS2(s2);
-
-        const S3 = await axios.get(`${BASE_API_URL}/getTodoS3`,{
-          withCredentials:true,
-      });
-      const s3 = await S3.dataS3;
-          
+  
+          const S3 = await axios.get(`${BASE_API_URL}/getTodoS3`, {
+            withCredentials: true,
+          });
+          const s3 = await S3.data;
+  
           console.log(s3);
           setSkipDBCall(true);
           setDataS3(s3);
-          
       })();
     }
   });
