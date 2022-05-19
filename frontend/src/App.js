@@ -8,6 +8,7 @@ import Home from './pages/Home/Home';
 import Crop from './pages/Crop/Crop';
 import User from './pages/User/User';
 import Todo from './pages/Todo/todo';
+import S2 from './pages/S2/S2';
 import Glogin from './pages/Glogin/Glogin'
 
 
@@ -21,6 +22,7 @@ const App=()=> {
      <Route path='/crop' element={<Crop/>} /> 
      <Route path='/user' element={<User/>} /> 
      <Route  path='/todo' element={<Todo/>}/>
+     <Route  path='/S2' element={<S2/>}/>
   
      <Route  path='/plot' element={<Plot/>}/>
      <Route  path='/demand' element={<Demand/>}/>

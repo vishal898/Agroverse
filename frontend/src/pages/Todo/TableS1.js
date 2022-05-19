@@ -35,6 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CustomizedTables(props) {
   const S1 = props.S1;
+  console.log(S1)
 
   const handleDeleteChange = (todoId)=>{
     console.log(todoId);
