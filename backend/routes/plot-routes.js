@@ -19,6 +19,9 @@ router.get('/getAllPlots',async(req,res)=>{
     });
 });
 
+
+
+
 router.get('/getPlotById/:uid',async(req,res)=>{
     console.log("getPlot");
     uid=req.params.uid;
@@ -146,21 +149,6 @@ const  main = (n,reqCnt,dis) =>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.get('/getPermutation/:plotId/:todoId/:q',(req,res)=>{
 
     const NID = req.params.plotId;
@@ -218,6 +206,8 @@ router.get('/getPermutation/:plotId/:todoId/:q',(req,res)=>{
 
 
 
+
+
         let reqCnt=4;
 
 
@@ -247,6 +237,11 @@ router.get('/getPermutation/:plotId/:todoId/:q',(req,res)=>{
         });    
     });
 });
+
+
+
+
+
 
 
 
@@ -333,6 +328,21 @@ router.post('/deletePlot/:plotId',(req,res)=>{
    
     console.log('hit delete api');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router ;
 
