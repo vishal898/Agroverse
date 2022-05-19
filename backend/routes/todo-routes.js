@@ -5,6 +5,7 @@ const { findOneAndUpdate } = require("../models/todo");
 const Crop = require('../models/crop');
 const User = require('../models/user');
 const Todo = require('../models/todo');
+const Parcel = require("../models/parcel");
 
 
 router.get('/getTodoS1',async(req,res)=>{
@@ -145,6 +146,8 @@ router.post('/todo',(req,res)=>{
     res.json(`added`);
 });
 
+
+
 router.post('/updateTodoS1/:idA',(req,res)=>{
 
       let id = req.params.idA;
@@ -212,6 +215,95 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
     
 });
 
+
+
+
+
+
+
+
+
+
+router.post('/updateTodoS2/:idA/:plotId/:q',(req,res)=>{
+
+    let id = req.params.idA;
+    console.log(id);
+    const feild=req.body.feild;
+    let plotId=req.params.plotId;
+    let q=req.params.q;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Todo.findById(id, (err, todos)=> {
+    if (err){
+      console.log(err);
+    }
+    else{
+      
+      var cropId=todos.cropId;
+      var qTotal=todos.quantity;
+
+      Plot.findById(plotId, (err, plot)=> {
+          if (err){
+            console.log(err);
+          }
+          else{
+            
+
+            for(var i=0;i<feild.length;i++)
+            {
+                if(feild[i]==6)
+                {
+                    Parcel.findById(plot.parcels[i], (err, parcel)=> {
+                        if (err){
+                          console.log(err);
+                        }
+                        else{
+                          
+                            parcel.prev2=parcel.prev1;
+                            parcel.prev1=parcel.current;
+
+                            parcel.current=cropId;
+                            var result = new Date();
+                            result.setDate(result. getDate() + s2+s3);
+                            parcel.till=result;
+                            
+                            todo.parcels.push(plot.parcels[i]);
+              
+                            parcel.save();
+                      }
+                    });
+                }
+
+            }
+        }
+      });
+
+
+      var nd = new Date();
+      nd.setDate(nd.getDate() + s2+s3);
+
+      todos.startDate=nd;
+      todos.stage=3;
+      todos.quantity=todos.quantity-q;
+      todos.save();
+    }
+      res.json(`updated`);
+  });
+  
+});
 
 
 
