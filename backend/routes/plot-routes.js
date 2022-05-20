@@ -157,9 +157,9 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
     const todoId=req.params.todoId;
     const qT=parseInt(req.params.qT);
     console.log("getPermutations");
-    console.log(NID);
-    console.log(todoId);
-    console.log(req.params.qT);
+    // console.log(NID);
+    // console.log(todoId);
+    // console.log(req.params.qT);
     Plot.findOne({_id:NID},(err,plot)=>{
     //console.log(plot);
         

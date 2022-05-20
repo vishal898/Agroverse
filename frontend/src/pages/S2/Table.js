@@ -12,9 +12,6 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import "./Table.css";
 import { BASE_API_URL } from "../../constant";
-import {  useNavigate } from 'react-router-dom';
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,78 +34,54 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables(props) {
-  const S2 = props.S2;
-  const navigate = useNavigate();
-  const handleDeleteChange = (todoId)=>{
-    console.log(todoId);
-    ( async()=>{
-       
-       
-        const S2 = await axios.get(`${BASE_API_URL}/getTodoS2`,{
-            withCredentials:true,
-        });
-        const nd = await S2.data;
-        console.log(nd);
-        props.onChange(nd);
-    })();
+  const perms = props.permutations;
+  console.log(perms);
+  // console.log(crops)
+  // const handleDeleteChange = (todoId)=>{
+  //   console.log(todoId);
+  //   ( async()=>{
+        
+  //   })();
 
-  };
+  // };
   
-  const goToChat = (cropId) => {
-    console.log(cropId);
-    navigate(`/S2`, {
-      state: { cropId:cropId },
-    })
-  }
 
   return (
     <>
       <div className="tabht">
-        {S2 ? (
+        {perms ? (
           <>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead className="headt">
+                {/* <TableHead className="headt">
                   <TableRow>
                     <StyledTableCell style={{ width: 15 }}>
                       Sr. No.
                     </StyledTableCell>
                     <StyledTableCell align="center">Crop Name</StyledTableCell>
                     <StyledTableCell align="center">Quantity </StyledTableCell>
-                    <StyledTableCell align="center"> Select Plot </StyledTableCell>
+                    <StyledTableCell align="center"> Done </StyledTableCell>
                   </TableRow>
-                </TableHead>
+                </TableHead> */}
                 <TableBody>
-                  {S2.map((crop, ind) => (
+                {perms.map((items, index) => {
+                  return (
+                    <ol>
+                      {items.map((subItems, sIndex) => {
+                        return <li> {subItems} </li>;
+                      })}
+                    </ol>
+                  );
+                })}
+                  {/* {perms.map((perm, ind) => (
                     // console.log(plot);
-
-                    <StyledTableRow key={crop._id}>
-                      <StyledTableCell
-                        component="th"
-                        scope="crop"
-                        style={{ width: 15 }}
-                      >
-                        {" "}
-                        {ind + 1}{" "}
-                      </StyledTableCell>
+                    return ({perm.map((ele,ind))=(
                       <StyledTableCell align="center">
-                      {crop.cropId.cropname}
+                      {ele}
                        
                       </StyledTableCell>
-                      <StyledTableCell id="diff" align="center">
-                        {crop.quantity}
-                      </StyledTableCell>
-                     
-                      <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
-                     
-                        <Button
-                          onClick={() => goToChat(crop._id)}
-                          color="secondary" >
-                          Select Plot
-                        </Button>   
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
+                    )})
+                  ))} */}
                 </TableBody>
               </Table>
             </TableContainer>

@@ -12,6 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { BASE_API_URL } from "../../constant";
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
+import Table from "./Table";
+
 import './S2.css';
 const defaultValues = {
     plotId:"",
@@ -26,6 +28,7 @@ export default function Form() {
     const [plots, setPlots] = useState([]);
     const [boolVal, setBoolVal] = useState(false);
     const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,15 +40,16 @@ export default function Form() {
     };
 
     const handleSubmit = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         console.log("handleSumbitClicked");
         console.log(formValues);
         console.log(cropId);
         ( async()=>{
-            const Demand = await axios.get(`${BASE_API_URL}/getPermutation/${formValues.plotId}/${cropId}/${formValues.q}`,formValues,{
+            const permutations = await axios.get(`${BASE_API_URL}/getPermutation/${formValues.plotId}/${cropId}/${formValues.q}`,formValues,{
               withCredentials:true,
             });
-            console.log(Demand);
+            console.log(permutations.data);
+            setData(permutations.data);
             // alert("Demand Added Successfully");
         })();
     };
@@ -132,7 +136,11 @@ export default function Form() {
                     </Button>
                 </Grid>
             </form>
+                
+            <Table permutations={data}/>
+
             </>
+
           
     )
 }
