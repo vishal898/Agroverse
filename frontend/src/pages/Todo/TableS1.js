@@ -79,14 +79,14 @@ export default function CustomizedTables(props) {
                     <StyledTableRow key={crop._id}>
                       <StyledTableCell
                         component="th"
-                        scope="plot"
+                        scope="crop"
                         style={{ width: 15 }}
                       >
                         {" "}
                         {ind + 1}{" "}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                      {crop.cropname}
+                      {crop.cropId.cropname}
                        
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
