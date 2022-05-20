@@ -38,13 +38,14 @@ export default function CustomizedTables(props) {
   console.log(props)
   const perms = props.permutations;
   const plotId =props.formValues.plotId;
+  const q = props.formValues.q;
   const todoId =props.todoId;
   console.log(perms);
   // console.log(crops)
   const handleSubmitChange = (items)=>{
-   
+    console.log(items);
     ( async()=>{
-      const selectPlot = await axios.post(`${BASE_API_URL}/updateTodoS2/${todoId}/${plotId}/${items}`,{
+      const selectPlot = await axios.post(`${BASE_API_URL}/updateTodoS2/${todoId}/${plotId}/${q}`,items,{
         withCredentials:true,
       });
       console.log("selected");
