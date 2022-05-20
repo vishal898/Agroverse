@@ -95,9 +95,9 @@ router.post('/todo',(req,res)=>{
     
 
     console.log("in create todo");
-    const userId = req.user._id;
+    const userId =  req.user._id;
     //const userId=req.params.uid;
-
+    console.log(userId);
     
     var dateD = new Date ("Jan 01, 2000, 00:00:01");  
     var date11=new Date();
@@ -118,7 +118,7 @@ router.post('/todo',(req,res)=>{
             console.log(thisCrop);
             Crop.findById(thisCrop,(err,crop)=>{
                 
-                
+                console.log(crop);
                 var s1=crop.s1;
                 var s2=crop.s2;
                 console.log(s1);

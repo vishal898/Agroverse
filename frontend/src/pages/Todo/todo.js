@@ -20,9 +20,8 @@ export default function Todo() {
 
       ( async()=>{
 
-        const callTodo = await axios.post(`${BASE_API_URL}/todo`,{
-          withCredentials:true,
-      });
+          const callTodo = await axios.post(`${BASE_API_URL}/todo`,{},{ withCredentials:true,});
+          console.log(callTodo);
 
           const S1 = await axios.get(`${BASE_API_URL}/getTodoS1`,{
               withCredentials:true,
