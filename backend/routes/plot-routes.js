@@ -127,7 +127,7 @@ const solve = (n,reqCnt,reqGap) => {
     return ans;
 }
 
-const  main = (n,reqCnt,dis) =>{
+const  main = (n,reqCnt) =>{
     
     //let field = [4,1,5,2,4,3,2,1,3,2];
     // for (let i=0; i<n; i++) feild.push(0);
@@ -137,7 +137,7 @@ const  main = (n,reqCnt,dis) =>{
     
     console.log(finalAns);
     if (finalAns.g < 0 || finalAns.y < 0 || finalAns.r< 0)
-        return 0;
+        return [];
         
     //console.log(...finalAns.v);
     return finalAns.v;
@@ -231,18 +231,23 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
 
 
         let acAns=[];
-        for(let j=0;j<feild.length;j++)
+        console.log(ans);
+        let yyy=ans;
+        for(let j=0;j<yyy.length;j++)
         {
 
                 inf = -1000;
-                
-                feild =ans;
-                dis = 0;
+                console.log(yyy);
+                feild =[...yyy];
+                dis = j;
 
-                const x=main(feild.length-1,reqCnt,acAns);
+                const x=main(feild.length-1,reqCnt);
+                //console.log(reqCnt);
+                //console.log(x);
 
                 for (let i = 0; i < x.length; i++) {
-                    feild[x[i]]=6; 
+                    feild[parseInt(x[i])]=6;
+                    console.log(parseInt(x[i])); 
                 }
                 acAns.push(feild);
         }
@@ -250,7 +255,7 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
 
      
             res.send(acAns);
-            res.send("done");
+           // res.send("done");
         });  });  
     });
 });
