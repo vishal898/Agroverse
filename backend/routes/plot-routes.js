@@ -230,14 +230,13 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
         console.log(reqCnt);
 
 
-        let acAns=[];
+        var acAns=[];
         console.log(ans);
         let yyy=ans;
         for(let j=0;j<yyy.length;j++)
         {
-
                 inf = -1000;
-                console.log(yyy);
+               // console.log(yyy);
                 feild =[...yyy];
                 dis = j;
 
@@ -246,18 +245,22 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
                 //console.log(x);
 
                 for (let i = 0; i < x.length; i++) {
-                    feild[parseInt(x[i])]=6;
-                    console.log(parseInt(x[i])); 
+                    feild[x[i]]=6;
+                    //console.log(parseInt(x[i])); 
                 }
-                acAns.push(feild);
+                //console.log(sz);
+
+                if(feild.length===(sz+1))
+                     acAns.push(feild);
         }
 
 
-     
-            res.send(acAns);
+        res.send(acAns);
+           
            // res.send("done");
         });  });  
     });
+    
 });
 
 
