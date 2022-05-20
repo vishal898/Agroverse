@@ -18,6 +18,17 @@ router.get('/getAllCrops',async(req,res)=>{
     });
 });
 
+router.get('/getCropById/:uid',async(req,res)=>{
+    console.log("getCrop");
+    uid=req.params.uid;
+    console.log(uid);
+    Crop.find({_id:uid},(err,data)=>{
+        if(err)throw error;
+        res.json(data);
+        // console.log(data);
+    });
+});
+
 
 
 // post create 

@@ -5,13 +5,15 @@ const { findOneAndUpdate } = require("../models/todo");
 const Crop = require('../models/crop');
 const User = require('../models/user');
 const Todo = require('../models/todo');
+const Parcel = require("../models/parcel");
 
 
 router.get('/getTodoS1',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
+    //const uid=req.params.uid;
     console.log(uid);
-
-    Todo.populate("cropId").exec((err,data)=>{
+    
+    Todo.find({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -21,27 +23,21 @@ router.get('/getTodoS1',async(req,res)=>{
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             console.log(diffDays + " days");
-            // return 1;
-
-            var str=todo.userId._id;
-            str=str.toString();
-            var x=uid.toString();
-
-             return (x==str && diffDays<=1 && todo.stage==1); 
+        
+             return (diffDays<=1 && todo.stage==1); 
         });
 
         res.json(filtered);
         console.log(filtered)
     });
 });
-
-
 
 router.get('/getTodoS2',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
+    //const uid=req.params.uid;
     console.log(uid);
-
-    Todo.populate("cropId").exec((err,data)=>{
+    
+    Todo.find({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -51,28 +47,21 @@ router.get('/getTodoS2',async(req,res)=>{
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             console.log(diffDays + " days");
-            // return 1;
-
-            var str=todo.userId._id;
-            str=str.toString();
-            var x=uid.toString();
-
-             return (x==str && diffDays<=1 && todo.stage==2); 
+        
+             return (diffDays<=1 && todo.stage==2); 
         });
 
         res.json(filtered);
         console.log(filtered)
     });
 });
-
-
-
 
 router.get('/getTodoS3',async(req,res)=>{
-    const uid=req.body.user._id;
+    const uid=req.user._id;
+    //const uid=req.params.uid;
     console.log(uid);
-
-    Todo.populate("cropId").exec((err,data)=>{
+    
+    Todo.find({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -82,19 +71,15 @@ router.get('/getTodoS3',async(req,res)=>{
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             console.log(diffDays + " days");
-            // return 1;
-
-            var str=todo.userId._id;
-            str=str.toString();
-            var x=uid.toString();
-
-             return (x==str && diffDays<=1 && todo.stage==3); 
+        
+             return (diffDays<=1 && todo.stage==3); 
         });
 
         res.json(filtered);
         console.log(filtered)
     });
 });
+
 
 
 
@@ -110,8 +95,8 @@ router.post('/todo',(req,res)=>{
     
 
     console.log("in create todo");
-    const userId = req.body.user._id;
-
+    const userId = req.user._id;
+    //const userId=req.params.uid;
 
     
     var dateD = new Date ("Jan 01, 2000, 00:00:01");  
@@ -127,14 +112,16 @@ router.post('/todo',(req,res)=>{
     User.findById(userId,(err,user)=>{
         
         
-        for(var i=0;i<user.crops.size();i++)
+        for(var i=0;i<user.crops.length;i++)
         {
             var thisCrop=user.crops[i];
-
+            console.log(thisCrop);
             Crop.findById(thisCrop,(err,crop)=>{
+                
                 
                 var s1=crop.s1;
                 var s2=crop.s2;
+                console.log(s1);
                 day1=day1+s1+s2;
                 day1%=366;
                 if(crop.demand[day1]-crop.supply[day1]>0)
@@ -158,6 +145,8 @@ router.post('/todo',(req,res)=>{
     });
     res.json(`added`);
 });
+
+
 
 router.post('/updateTodoS1/:idA',(req,res)=>{
 
@@ -226,6 +215,95 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
     
 });
 
+
+
+
+
+
+
+
+
+
+router.post('/updateTodoS2/:idA/:plotId/:q',(req,res)=>{
+
+    let id = req.params.idA;
+    console.log(id);
+    const feild=req.body.feild;
+    let plotId=req.params.plotId;
+    let q=req.params.q;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Todo.findById(id, (err, todos)=> {
+    if (err){
+      console.log(err);
+    }
+    else{
+      
+      var cropId=todos.cropId;
+      var qTotal=todos.quantity;
+
+      Plot.findById(plotId, (err, plot)=> {
+          if (err){
+            console.log(err);
+          }
+          else{
+            
+
+            for(var i=0;i<feild.length;i++)
+            {
+                if(feild[i]==6)
+                {
+                    Parcel.findById(plot.parcels[i], (err, parcel)=> {
+                        if (err){
+                          console.log(err);
+                        }
+                        else{
+                          
+                            parcel.prev2=parcel.prev1;
+                            parcel.prev1=parcel.current;
+
+                            parcel.current=cropId;
+                            var result = new Date();
+                            result.setDate(result. getDate() + s2+s3);
+                            parcel.till=result;
+                            
+                            todo.parcels.push(plot.parcels[i]);
+              
+                            parcel.save();
+                      }
+                    });
+                }
+
+            }
+        }
+      });
+
+
+      var nd = new Date();
+      nd.setDate(nd.getDate() + s2+s3);
+
+      todos.startDate=nd;
+      todos.stage=3;
+      todos.quantity=todos.quantity-q;
+      todos.save();
+    }
+      res.json(`updated`);
+  });
+  
+});
 
 
 
