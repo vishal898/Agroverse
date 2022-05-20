@@ -48,6 +48,7 @@ export default function Form({ onFormSubmit }) {
         console.log("handleSumbitClicked");
         console.log(formValues);
         onFormSubmit(formValues);
+        alert("Crop added successfully !!");
     };
 
     // useEffect(()=>{

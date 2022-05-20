@@ -39,6 +39,7 @@ export default function Form({ onFormSubmit }) {
         console.log("handleSumbitClicked");
         console.log(formValues);
         onFormSubmit(formValues);
+        alert("Plot added successfully !!");
     };
 
 

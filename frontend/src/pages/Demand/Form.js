@@ -2,10 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {InputLabel} from '@mui/material';
@@ -13,10 +10,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { BASE_API_URL } from "../../constant";
 
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import Stack from '@mui/material/Stack';
+
 import "./Form.css"
 const defaultValues = {
     cropId:"",
@@ -24,13 +18,7 @@ const defaultValues = {
     date1:null,
     date2:null
 };
-const theme = createTheme => ({
-    select: {
-      "&:before": {
-        borderColor: "red"
-      }
-    }
-  });
+
 export default function Form() {
 
     const [formValues, setFormValues] = useState(defaultValues);
@@ -55,7 +43,7 @@ export default function Form() {
             const Demand = await axios.post(`${BASE_API_URL}/addDemand`,formValues,{
               withCredentials:true,
             });
-            alert("Demand Added Successfully");
+            alert("Demand added successfully !!");
         })();
     };
 
