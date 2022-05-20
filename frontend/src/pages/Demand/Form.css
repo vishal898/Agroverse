@@ -1,27 +1,15 @@
-/* .grid {
- 
-  padding-top: 50px;
-  padding-bottom: 50px;
-  left: 0;
-  width: 100%;
-} */
 
-/* .formDiv {
+
+.formDiv {
   padding: 0px;
   width: 100%;
-}
-.inp {
-  width: 100%;
-}
-TextField {
-  width: 100%;
-}*/
+} 
 .inp {
   width: 100%;
   color:white;
   font-size: large;
   padding: 13px;
-} 
+}
 
 
 input:focus { 
@@ -29,16 +17,11 @@ input:focus {
   border-color: #719ECE;
   box-shadow: 0 0 10px #719ECE;
 }
-Select:focus{
-  outline: none !important;
-  border-color: #719ECE;
-  box-shadow: 0 0 10px #719ECE;
-}
 
  .demand{
  padding: 20px ;
- padding-left: 25%;
- margin: -64px;
+ padding-left: 40%;
+ 
   background-image: linear-gradient(
     to bottom right,
     rgb(30, 133, 151),
@@ -50,4 +33,3 @@ Select:focus{
 
   box-shadow: 0 4px 8px 0 rgba(87, 132, 150, 0.897);
 }
-
