@@ -20,7 +20,7 @@ const defaultValues = {
     date2:null
 };
 
-export default function Form() {
+export default function Form(props) {
 
     const [formValues, setFormValues] = useState(defaultValues);
     const [plots, setPlots] = useState([]);
@@ -125,7 +125,7 @@ export default function Form() {
                         />
                     </Grid>
                     <br />
-                    <Button variant="contained" color="primary" type="submit" style={{marginTop: "15px" ,marginRight:"16%"}}>
+                    <Button variant="contained" color="primary" type="submit" style={{marginTop: "15px" ,marginRight:"22%"}}>
                         Submit
                     </Button>
                 </Grid>

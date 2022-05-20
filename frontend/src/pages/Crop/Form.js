@@ -118,7 +118,7 @@ export default function Form({ onFormSubmit }) {
                     
                     <br />
                    
-                    <InputLabel shrink htmlFor="prodPer5-input"  style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Production Per 5 Crops : </InputLabel>
+                    <InputLabel shrink htmlFor="prodPer5-input"  style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Production/5 Crops : </InputLabel>
                         <input className="inp"
                             id="prodPer5-input"
                             name="prodPer5"
@@ -132,7 +132,7 @@ export default function Form({ onFormSubmit }) {
                   
                     <br />
                    
-                    <InputLabel shrink htmlFor="areaPer5-input"  style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Area Per 5 Plants : </InputLabel>
+                    <InputLabel shrink htmlFor="areaPer5-input"  style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Area / 5 Plants : </InputLabel>
                         <input className="inp"
                             id="areaPer5-input"
                             name="areaPer5"

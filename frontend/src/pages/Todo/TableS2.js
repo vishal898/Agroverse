@@ -91,11 +91,12 @@ export default function CustomizedTables(props) {
                       </StyledTableCell>
                      
                       <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
+                     
                         <Button
-                          // onClick={ ()=>{
+                          onClick={ ()=>{
                             
                             
-                          // }}
+                          }}
                           href="http://localhost:3000/S2"
                           color="secondary" >
                           Select Plot

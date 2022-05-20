@@ -70,7 +70,7 @@ export default function CustomizedTables(props) {
                     <StyledTableCell align="center">S1 </StyledTableCell>
                     <StyledTableCell align="center">S2 </StyledTableCell>
                     <StyledTableCell align="center">S3 </StyledTableCell>
-                    <StyledTableCell align="center">ProdPer5 </StyledTableCell>
+                    <StyledTableCell align="center">Prod./5 crops </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>

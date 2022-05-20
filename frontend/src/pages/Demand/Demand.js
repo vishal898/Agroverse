@@ -12,6 +12,10 @@ export default function Demand() {
     <Navbar/>
     
     <div >
+    <h1 align="center" style={{color:"black",marginBottom:"5%",marginTop:"-4%"}}>
+        Add demand  
+                  
+      </h1>
     
       <Demandform/>
       
