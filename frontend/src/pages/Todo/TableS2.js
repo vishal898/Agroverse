@@ -96,7 +96,7 @@ export default function CustomizedTables(props) {
                             
                             
                           // }}
-                          href="http://www.google.com"
+                          href="http://localhost:3000/S2"
                           color="secondary" >
                           Select Plot
                         </Button>   

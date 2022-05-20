@@ -34,19 +34,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables(props) {
-  const plots = props.plots;
+  const S3 = props.S3;
 
-  const handleDeleteChange = (plotId)=>{
-    console.log(plotId);
+  const handleDeleteChange = (todoId)=>{
+    console.log(todoId);
     ( async()=>{
-        const delData = await axios.post(`${BASE_API_URL}/deletePlot/${plotId}`,{
+        const delData = await axios.post(`${BASE_API_URL}/deletePlot/${todoId}`,{
           withCredentials:true,
         });
         console.log(delData);
-        const plots = await axios.get(`${BASE_API_URL}/getTodoS3`,{
+        const S3 = await axios.get(`${BASE_API_URL}/getTodoS3`,{
             withCredentials:true,
         });
-        const nd = await plots.data;
+        const nd = await S3.data;
         console.log(nd);
         props.onChange(nd);
     })();
@@ -57,7 +57,7 @@ export default function CustomizedTables(props) {
   return (
     <>
       <div className="tabht">
-        {plots ? (
+        {S3 ? (
           <>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -72,31 +72,31 @@ export default function CustomizedTables(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {plots.map((plot, ind) => (
+                  {S3.map((crop, ind) => (
                     // console.log(plot);
 
-                    <StyledTableRow key={plot._id}>
+                    <StyledTableRow key={crop._id}>
                       <StyledTableCell
                         component="th"
-                        scope="plot"
+                        scope="crop"
                         style={{ width: 15 }}
                       >
                         {" "}
                         {ind + 1}{" "}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                      {plot.plotname}
+                      {crop.cropId.cropname}
                        
                       </StyledTableCell>
                       <StyledTableCell id="diff" align="center">
-                        {plot.parcelCnt}
+                        {crop.quantity}
                       </StyledTableCell>
                      
                       <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
                         <Button
                           onClick={ ()=>{
-                            console.log(plot._id);
-                            handleDeleteChange(plot._id);
+                            console.log(crop._id);
+                            handleDeleteChange(crop._id);
                           }}
                           color="secondary" >
                           Done
