@@ -10,7 +10,7 @@ import {InputLabel} from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { BASE_API_URL } from "../../constant";
-
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 import './S2.css';
 const defaultValues = {
@@ -20,8 +20,10 @@ const defaultValues = {
     date2:null
 };
 
-export default function Form(props) {
-
+export default function Form() {
+    const location = useLocation();
+    const cropId = location.state.cropId;
+    console.log(location.state.cropId);
     const [formValues, setFormValues] = useState(defaultValues);
     const [plots, setPlots] = useState([]);
     const [boolVal, setBoolVal] = useState(false);

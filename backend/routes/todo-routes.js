@@ -12,7 +12,7 @@ router.get('/getTodoS1',async(req,res)=>{
     const uid=req.user._id;
     //const uid=req.params.uid;
     console.log(uid);
-    
+   
     Todo.find({userId:uid}).populate('cropId').exec((err,data)=>{
         if(err)throw error;
 
