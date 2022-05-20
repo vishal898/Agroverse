@@ -14,10 +14,8 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 import './S2.css';
 const defaultValues = {
-    cropId:"",
-    q:null,
-    date1:null,
-    date2:null
+    plotId:"",
+    q:null
 };
 
 export default function Form() {
@@ -39,14 +37,16 @@ export default function Form() {
     };
 
     const handleSubmit = (event) => {
-        // event.prevent    Default();
+        // event.preventDefault();
         console.log("handleSumbitClicked");
         console.log(formValues);
+        console.log(cropId);
         ( async()=>{
-            const Demand = await axios.post(`${BASE_API_URL}/addDemand`,formValues,{
+            const Demand = await axios.get(`${BASE_API_URL}/getPermutation/${formValues.plotId}/${cropId}/${formValues.q}`,formValues,{
               withCredentials:true,
             });
-            alert("Demand Added Successfully");
+            console.log(Demand);
+            // alert("Demand Added Successfully");
         })();
     };
 
@@ -92,8 +92,8 @@ export default function Form() {
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={formValues.plotId}
-                            name ="cropId"
-                            label="cropName"
+                            name ="plotId"
+                            label="plotName"
                             onChange={handleChange}
                             style = {{width: 300,backgroundColor:"inherit",  height: 40,
                             borderRadius: "10px",borderColor:"lime"}}

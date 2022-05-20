@@ -5,6 +5,8 @@ const { findOneAndUpdate } = require("../models/plot");
 const Plot = require('../models/plot');
 const User = require('../models/user');
 const Parcel = require('../models/parcel');
+const Todo = require('../models/todo');
+const Crop = require('../models/crop');
 
 
 // get read 
@@ -43,7 +45,7 @@ router.get('/getPlotById/:uid',async(req,res)=>{
 
 
 
-const inf = -1000;
+let inf = -1000;
 // let feild = [];
 let feild = [0,4,1,5,2,4,3,2,1,3,2,1,5,2,4,3,2,1,3,2];
 let dis = 0;
@@ -149,73 +151,87 @@ const  main = (n,reqCnt,dis) =>{
 
 
 
-router.get('/getPermutation/:plotId/:todoId/:q',(req,res)=>{
+router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
 
     const NID = req.params.plotId;
     const todoId=req.params.todoId;
+    const qT=parseInt(req.params.qT);
+    console.log("getPermutations");
     console.log(NID);
-    Plot.find({_id:NID},(err,plot)=>{
-
+    console.log(todoId);
+    console.log(req.params.qT);
+    Plot.findOne({_id:NID},(err,plot)=>{
+    //console.log(plot);
         
-     const array=plot.parcels;
-     const sz=plot.parcelCnt;
-     var ans=[];
+     let arrayi=plot.parcels;
+     //console.log(arrayi);
+     let sz=plot.parcelCnt;
+     //console.log(sz);
+     let ans=[];
      ans.push(0);
 
 
-     Todo.find({_id:todoId},(err,todo)=>{
+     Todo.findOne({_id:todoId},(err,todo)=>{
         
         // console.log(data);
-        var cropId=todo.cropId;
-    
-        var q=todo.quantity;
+        let cropId=todo.cropId;
+        console.log(cropId);
+        let q=parseInt(todo.quantity);
 
 
+                for(let i=0;i<arrayi.length;i++)
+                {  
+                        let par=arrayi[i];
 
-     for(var i=0;i<array.length;i++)
-     {  
-            var par=array[i];
+                        Parcel.findOne({_id:par},(err,parcel)=>{
 
-            Parcel.find({_id:par},(err,parcel)=>{
+                            let prev1=parcel.prev1;
+                            let prev2=parcel.prev2;
+                            let till=parcel.till;
 
-                var prev1=parcel.prev1;
-                var prev2=parcel.prev2;
-                var till=parcel.till;
+                            if(till>=new Date())
+                            {
+                                if(parcel.current==cropId)
+                                    ans.push(4);
+                                else
+                                    ans.push(5);
+                            }
+                            else
+                            {
+                                if(prev1!=cropId && prev2!=cropId)
+                                    ans.push(1);
+                                else if(prev1!=cropId && prev2==cropId)
+                                    ans.push(2);
+                                else
+                                    ans.push(3);
+                            }
 
-                if(till>=new Date())
-                {
-                    if(parcel.current==cropId)
-                        ans.push(4);
-                    else
-                        ans.push(5);
+
+                        });
                 }
-                else
-                {
-                    if(prev1!=cropId && prev2!=cropId)
-                        ans.push(1);
-                    else if(prev1!=cropId && prev2==cropId)
-                        ans.push(2);
-                    else
-                        ans.push(3);
-                }
-
-
-            });
-     }
 
 
 
+     Crop.findOne({_id:cropId},(err,crop)=>{
+        console.log(".....");
+        
+        
+        let x=parseInt(crop.prodPer5);
+        console.log(x);
+        let plantReq=(5*qT)/x;
+        let areaPer5=parseInt(crop.areaPer5);
+
+        let areaT=(plantReq*areaPer5)/5;
+        let oneP=parseInt(plot.parcelLength)*parseInt(plot.parcelWidth);
+
+        let reqCnt=Math.ceil(areaT/oneP);
 
 
-
-        let reqCnt=4;
-
+        console.log(reqCnt);
 
 
-
-
-        var acAns=[];
-        for(var j=0;j<feild.length;j++)
+        let acAns=[];
+        for(let j=0;j<feild.length;j++)
         {
 
                 inf = -1000;
@@ -234,7 +250,8 @@ router.get('/getPermutation/:plotId/:todoId/:q',(req,res)=>{
 
      
             res.send(acAns);
-        });    
+            res.send("done");
+        });  });  
     });
 });
 
