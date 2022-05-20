@@ -13,7 +13,7 @@ router.get('/getTodoS1',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find({userId:uid},(err,data)=>{
+    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -37,7 +37,7 @@ router.get('/getTodoS2',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find({userId:uid},(err,data)=>{
+    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -61,7 +61,7 @@ router.get('/getTodoS3',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find({userId:uid},(err,data)=>{
+    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
