@@ -6,6 +6,7 @@ const Crop = require('../models/crop');
 const User = require('../models/user');
 const Todo = require('../models/todo');
 const Parcel = require("../models/parcel");
+const Plot = require('../models/plot');
 
 
 router.get('/getTodoS1',async(req,res)=>{
@@ -226,87 +227,94 @@ router.post('/updateTodoS1/:idA',(req,res)=>{
 
 router.post('/updateTodoS2/:idA/:plotId/:q',(req,res)=>{
 
-    let id = req.params.idA;
-    console.log(id);
-    const feild=req.body.feild;
-    let plotId=req.params.plotId;
-    let q=req.params.q;
+  let id = req.params.idA;
+  console.log(id);
+  const feild=req.body.feild;
+  let plotId=req.params.plotId;
+  let q=req.params.q;
+
+  console.log(feild);
+
+  
 
 
+  Todo.findOne({_id:id},(err,todos)=>{
+  if (err){
+    console.log(err);
+  }
+  else{
+    console.log(todos);
+    var cropId=todos.cropId;
+    var qTotal=todos.quantity;
 
+    Crop.findOne({_id:cropId},(err,crop)=>{
+      let s2=crop.s2;
+      let s3=crop.s3;
 
-
-
-
-
-
-
-
-
-
-
-
-    Todo.findById(id, (err, todos)=> {
-    if (err){
-      console.log(err);
-    }
-    else{
-      
-      var cropId=todos.cropId;
-      var qTotal=todos.quantity;
-
-      Plot.findById(plotId, (err, plot)=> {
-          if (err){
-            console.log(err);
-          }
-          else{
-            
-
-            for(var i=0;i<feild.length;i++)
-            {
-                if(feild[i]==6)
-                {
-                    Parcel.findById(plot.parcels[i], (err, parcel)=> {
-                        if (err){
-                          console.log(err);
-                        }
-                        else{
-                          
-                            parcel.prev2=parcel.prev1;
-                            parcel.prev1=parcel.current;
-
-                            parcel.current=cropId;
-                            var result = new Date();
-                            result.setDate(result. getDate() + s2+s3);
-                            parcel.till=result;
-                            
-                            todo.parcels.push(plot.parcels[i]);
-              
-                            parcel.save();
-                      }
-                    });
-                }
-
-            }
+    Plot.findOne({_id:plotId},(err,plot)=>{
+        if (err){
+          console.log(err);
         }
-      });
+        else{
+          
 
+          for(var i=0;i<feild.length-1;i++)
+          { 
+              let z=plot.parcels[i];
+              console.log(z);
+              if(feild[i+1]==6)
+              {
+                Parcel.findOne({_id:plot.parcels[i]},(err,parcel)=>{
+          
+                      if (err){
+                        console.log(err);
+                      }
+                      else{
+                        console.log(parcel);
+                          parcel.prev2=parcel.prev1;
+                          parcel.prev1=parcel.current;
 
-      var nd = new Date();
-      nd.setDate(nd.getDate() + s2+s3);
+                          parcel.current=cropId;
+                          var result = new Date();
+                          result.setDate(result. getDate() + s2+s3);
+                          parcel.till=result;
+                          
+                          todos.parcels.push(plot.parcels[i]);
+            
+                          parcel.save();
+                    }
+                  });
+              }
 
-      todos.startDate=nd;
-      todos.stage=3;
-      todos.quantity=todos.quantity-q;
-      todos.save();
-    }
-      res.json(`updated`);
+          }
+      }
+      
+
+      todos.quantity=parseInt(todos.quantity)-q;
+      console.log(todos.quantity);
+      if(todos.quantity<=0)
+      {
+
+      
+
+          var nd = new Date();
+          nd.setDate(nd.getDate() + s2+s3);
+
+          todos.startDate=nd;
+          todos.stage=3;
+          q=parseInt(q);
+      }
+
+    todos.save();
+
   });
   
+    res.json(`updated`);
 });
+  }
 
-
-
+  });
+});
 
 
 

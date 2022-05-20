@@ -7,9 +7,9 @@
 }
 
 
-.items[sub-items=0] {
+.item {
  
-  color : orange;
-  background-color: #3bb0b4;
+  border-color: white;
+  border-style: double;
  }
  

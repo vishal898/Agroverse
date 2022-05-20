@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import "./Table.css";
 import { BASE_API_URL } from "../../constant";
 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: theme.palette.common.white,
@@ -34,13 +35,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables(props) {
+  console.log(props)
   const perms = props.permutations;
+  const plotId =props.formValues.plotId;
+  const todoId =props.todoId;
   console.log(perms);
   // console.log(crops)
-  const handleSubmitChange = ()=>{
+  const handleSubmitChange = (items)=>{
    
     ( async()=>{
-        
+      const selectPlot = await axios.post(`${BASE_API_URL}/updateTodoS2/${todoId}/${plotId}/${items}`,{
+        withCredentials:true,
+      });
+      console.log("selected");
+      console.log(selectPlot);
     })();
 
   };
@@ -60,7 +68,7 @@ export default function CustomizedTables(props) {
                   return (
                     <StyledTableRow>
                       {items.map((subItems, sIndex) => {
-                        return <><StyledTableCell  sub-items="{{subItems}}" class="items"> {subItems} </StyledTableCell> 
+                        return <><StyledTableCell className="item"style = {{backgroundColor:(subItems===1)?"#008000":(subItems===2)?"#00FF00":(subItems===3)?"#FFFF00":(subItems===4)?"#FF0000":(subItems===5)?"#FFA500":"#800080" }}> {subItems} </StyledTableCell> 
                        
                         </>;
                       })}

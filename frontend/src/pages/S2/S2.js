@@ -137,7 +137,7 @@ export default function Form() {
                 </Grid>
             </form>
             <br/><br/><br/><br/>
-            <Table permutations={data}/>
+            <Table permutations={data} formValues={formValues} todoId={cropId}/>
 
             </>
 
