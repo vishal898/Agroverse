@@ -317,7 +317,26 @@ router.post('/updateTodoS2/:idA/:plotId/:q',(req,res)=>{
 });
 
 
+router.post('/updateTodoS3/:idA',(req,res)=>{
 
+  let id = req.params.idA;
+  console.log(id);
+  
+  Todo.findOne({_id:id},(err,todos)=>{
+  if (err){
+    console.log(err);
+  }
+  else{
+ 
+         
+          todos.stage=4;
+          res.send(todos.parcels);
+          todos.save();
+    }
+  });
+  
+    
+});
 
 
 
