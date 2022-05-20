@@ -136,7 +136,7 @@ export default function Form() {
                     </Button>
                 </Grid>
             </form>
-                
+            <br/><br/><br/><br/>
             <Table permutations={data}/>
 
             </>

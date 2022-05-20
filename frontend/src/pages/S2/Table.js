@@ -37,13 +37,13 @@ export default function CustomizedTables(props) {
   const perms = props.permutations;
   console.log(perms);
   // console.log(crops)
-  // const handleDeleteChange = (todoId)=>{
-  //   console.log(todoId);
-  //   ( async()=>{
+  const handleSubmitChange = ()=>{
+   
+    ( async()=>{
         
-  //   })();
+    })();
 
-  // };
+  };
   
 
   return (
@@ -51,37 +51,33 @@ export default function CustomizedTables(props) {
       <div className="tabht">
         {perms ? (
           <>
+         
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                {/* <TableHead className="headt">
-                  <TableRow>
-                    <StyledTableCell style={{ width: 15 }}>
-                      Sr. No.
-                    </StyledTableCell>
-                    <StyledTableCell align="center">Crop Name</StyledTableCell>
-                    <StyledTableCell align="center">Quantity </StyledTableCell>
-                    <StyledTableCell align="center"> Done </StyledTableCell>
-                  </TableRow>
-                </TableHead> */}
+              
                 <TableBody>
                 {perms.map((items, index) => {
                   return (
-                    <ol>
+                    <StyledTableRow>
                       {items.map((subItems, sIndex) => {
-                        return <li> {subItems} </li>;
+                        return <><StyledTableCell> {subItems} </StyledTableCell> 
+                       
+                        </>;
                       })}
-                    </ol>
+                       <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
+                        <Button
+                          onClick={ ()=>{
+                            
+                            handleSubmitChange(items);
+                          }}
+                          color="secondary" >
+                          Select
+                        </Button>   
+                      </StyledTableCell>
+                     </StyledTableRow>
                   );
                 })}
-                  {/* {perms.map((perm, ind) => (
-                    // console.log(plot);
-                    return ({perm.map((ele,ind))=(
-                      <StyledTableCell align="center">
-                      {ele}
-                       
-                      </StyledTableCell>
-                    )})
-                  ))} */}
+                 
                 </TableBody>
               </Table>
             </TableContainer>
@@ -89,7 +85,7 @@ export default function CustomizedTables(props) {
             <br />
           </>
         ) : (
-          <div>isLoading</div>
+          <div></div>
         )}
       </div>
     </>
