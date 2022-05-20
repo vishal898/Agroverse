@@ -13,7 +13,7 @@ router.get('/getTodoS1',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
+    Todo.find({userId:uid}).populate('cropId').exec((err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -37,7 +37,7 @@ router.get('/getTodoS2',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
+    Todo.find({userId:uid}).populate('cropId').exec((err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -61,7 +61,7 @@ router.get('/getTodoS3',async(req,res)=>{
     //const uid=req.params.uid;
     console.log(uid);
     
-    Todo.find().populate('cropId').exec({userId:uid},(err,data)=>{
+    Todo.find({userId:uid}).populate('cropId').exec((err,data)=>{
         if(err)throw error;
 
         var filtered = data.filter(function(todo) {
@@ -95,8 +95,8 @@ router.post('/todo',(req,res)=>{
     
 
     console.log("in create todo");
-    const userId =  req.user._id;
-    //const userId=req.params.uid;
+    const userId = req.user._id;
+    // const userId=req.params.uid;
     console.log(userId);
     
     var dateD = new Date ("Jan 01, 2000, 00:00:01");  
