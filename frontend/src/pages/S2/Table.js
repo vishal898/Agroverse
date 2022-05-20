@@ -39,6 +39,7 @@ export default function CustomizedTables(props) {
   const perms = props.permutations;
   const plotId =props.formValues.plotId;
   const todoId =props.todoId;
+  const [select,setSelect]=useState(false);
   console.log(perms);
   // console.log(crops)
   const handleSubmitChange = (items)=>{
@@ -47,6 +48,7 @@ export default function CustomizedTables(props) {
       const selectPlot = await axios.post(`${BASE_API_URL}/updateTodoS2/${todoId}/${plotId}/${items}`,{
         withCredentials:true,
       });
+      setSelect(true);
       console.log("selected");
       console.log(selectPlot);
     })();
@@ -68,9 +70,13 @@ export default function CustomizedTables(props) {
                   return (
                     <StyledTableRow>
                       {items.map((subItems, sIndex) => {
-                        return <><StyledTableCell className="item"style = {{backgroundColor:(subItems===1)?"#008000":(subItems===2)?"#00FF00":(subItems===3)?"#FFFF00":(subItems===4)?"#FF0000":(subItems===5)?"#FFA500":"#800080" }}> {subItems} </StyledTableCell> 
+                         if(subItems > 0){
+                        return <>
                        
-                        </>;
+                        <StyledTableCell className="item"style = {{backgroundColor:(subItems===1)?"#008000":(subItems===2)?"#00FF00":(subItems===3)?"#FFFF00":(subItems===4)?"#FF0000":(subItems===5)?"#FFA500":"#800080" }}> {subItems} </StyledTableCell> 
+                        
+                       
+                        </>};
                       })}
                        <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
                         <Button
@@ -91,6 +97,10 @@ export default function CustomizedTables(props) {
             </TableContainer>
             <br />
             <br />
+            {
+            select && window.open('http://localhost:3000/home', '_blank')
+            
+          }
           </>
         ) : (
           <div></div>

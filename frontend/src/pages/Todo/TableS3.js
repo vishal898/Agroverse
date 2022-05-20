@@ -39,9 +39,9 @@ export default function CustomizedTables(props) {
   const handleDeleteChange = (todoId)=>{
     console.log(todoId);
     ( async()=>{
-        const delData = await axios.post(`${BASE_API_URL}/deletePlot/${todoId}`,{
-          withCredentials:true,
-        });
+      const delData = await axios.post(`${BASE_API_URL}/updateTodoS3/${todoId}`,{
+        withCredentials:true,
+      });
         console.log(delData);
         const S3 = await axios.get(`${BASE_API_URL}/getTodoS3`,{
             withCredentials:true,

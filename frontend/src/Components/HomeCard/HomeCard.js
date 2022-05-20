@@ -41,7 +41,7 @@ export default function OutlinedCard() {
         <p>This tab is to see and select the daily task pushed on basis of demand</p>
        
         
-        <p><button className="loginbutton" ><a style={{color:'white'}} href="/to-do">To-do</a></button></p>
+        <p><button className="loginbutton" ><a style={{color:'white'}} href="/todo">To-do</a></button></p>
       </div>
     </div>
   </div>
