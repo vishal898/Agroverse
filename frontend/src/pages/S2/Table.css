@@ -5,3 +5,11 @@
   max-height: 450px;
   overflow-y: auto;
 }
+
+
+.items[sub-items=0] {
+ 
+  color : orange;
+  background-color: #3bb0b4;
+ }
+ 

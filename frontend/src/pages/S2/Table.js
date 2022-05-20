@@ -60,7 +60,7 @@ export default function CustomizedTables(props) {
                   return (
                     <StyledTableRow>
                       {items.map((subItems, sIndex) => {
-                        return <><StyledTableCell> {subItems} </StyledTableCell> 
+                        return <><StyledTableCell  sub-items="{{subItems}}" class="items"> {subItems} </StyledTableCell> 
                        
                         </>;
                       })}
