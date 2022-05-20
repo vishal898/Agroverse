@@ -12,6 +12,9 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import "./Table.css";
 import { BASE_API_URL } from "../../constant";
+import {  useNavigate } from 'react-router-dom';
+
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,7 +38,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CustomizedTables(props) {
   const S2 = props.S2;
-
+  const navigate = useNavigate();
   const handleDeleteChange = (todoId)=>{
     console.log(todoId);
     ( async()=>{
@@ -51,6 +54,12 @@ export default function CustomizedTables(props) {
 
   };
   
+  const goToChat = (cropId) => {
+    console.log(cropId);
+    navigate(`/S2`, {
+      state: { cropId:cropId },
+    })
+  }
 
   return (
     <>
@@ -92,11 +101,7 @@ export default function CustomizedTables(props) {
                      
                       <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
                         <Button
-                          // onClick={ ()=>{
-                            
-                            
-                          // }}
-                          href="http://localhost:3000/S2"
+                          onClick={() => goToChat(crop.cropId._id)}
                           color="secondary" >
                           Select Plot
                         </Button>   
