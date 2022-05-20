@@ -229,11 +229,13 @@ router.post('/updateTodoS2/:idA/:plotId/:q',(req,res)=>{
 
   let id = req.params.idA;
   console.log(id);
-  const feild=req.body.feild;
+  const feild=req.body;
   let plotId=req.params.plotId;
   let q=req.params.q;
-
-  console.log(feild);
+  console.log(q);
+  console.log(plotId);
+  console.log("BODY");
+  console.log(req.body);
 
   
 
