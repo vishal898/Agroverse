@@ -151,7 +151,7 @@ const  main = (n,reqCnt) =>{
 
 
 
-router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
+router.get('/getPermutation/:plotId/:todoId/:qT',async(req,res)=>{
 
     const NID = req.params.plotId;
     const todoId=req.params.todoId;
@@ -167,11 +167,11 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
      //console.log(arrayi);
      let sz=plot.parcelCnt;
      //console.log(sz);
-     let ans=[];
-     ans.push(0);
+     let ansa=[];
+     ansa.push(0);
+        
 
-
-     Todo.findOne({_id:todoId},(err,todo)=>{
+     Todo.findOne({_id:todoId},async(err,todo)=>{
         
         // console.log(data);
         let cropId=todo.cropId;
@@ -179,38 +179,51 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
         let q=parseInt(todo.quantity);
 
 
-                for(let i=0;i<arrayi.length;i++)
-                {  
-                        let par=arrayi[i];
+        for(let i=0;i<arrayi.length;i++)
+        {  
+                
+                const parcel = await Parcel.findOne({_id:arrayi[i]})
+                    console.log(arrayi[i]);
+                    let prev1=parcel.prev1;
+                    let prev2=parcel.prev2;
+                    let till=parcel.till;
+                    console.log(till);
 
-                        Parcel.findOne({_id:par},(err,parcel)=>{
+                
+                    var date11=new Date();
 
-                            let prev1=parcel.prev1;
-                            let prev2=parcel.prev2;
-                            let till=parcel.till;
-
-                            if(till>=new Date())
-                            {
-                                if(parcel.current==cropId)
-                                    ans.push(4);
-                                else
-                                    ans.push(5);
-                            }
-                            else
-                            {
-                                if(prev1!=cropId && prev2!=cropId)
-                                    ans.push(1);
-                                else if(prev1!=cropId && prev2==cropId)
-                                    ans.push(2);
-                                else
-                                    ans.push(3);
-                            }
+                    var total_seconds = (till-date11) / 1000;  
+                    
+                    //calculate days difference by dividing total seconds in a day  
+                    var day1 = Math.floor (total_seconds / (60 * 60 * 24));  
+                    console.log(day1);
 
 
-                        });
-                }
+
+                    if(day1>1)
+                    {
+                        console.log(parcel.current);
+                        console.log(cropId);
+                        if(parcel.current.equals(cropId._id))
+                            ansa.push(4);
+                        else
+                            ansa.push(5);
+                    }
+                    else
+                    {
+                        if((prev1!=cropId) && (prev2!=cropId))
+                            ansa.push(1);
+                        else if((prev1!=cropId) && (prev2==cropId))
+                            ansa.push(2);
+                        else
+                            ansa.push(3);
+                    }
 
 
+                
+        }
+                console.log(ansa);
+                let yyy=ansa;
 
      Crop.findOne({_id:cropId},(err,crop)=>{
         console.log(".....");
@@ -231,8 +244,8 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
 
 
         var acAns=[];
-        console.log(ans);
-        let yyy=ans;
+        console.log(ansa);
+        
         for(let j=0;j<yyy.length;j++)
         {
                 inf = -1000;
@@ -262,22 +275,6 @@ router.get('/getPermutation/:plotId/:todoId/:qT',(req,res)=>{
     });
     
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

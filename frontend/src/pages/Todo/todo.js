@@ -20,8 +20,8 @@ export default function Todo() {
 
       ( async()=>{
 
-          const callTodo = await axios.post(`${BASE_API_URL}/todo`,{},{ withCredentials:true,});
-          console.log(callTodo);
+          // const callTodo = await axios.post(`${BASE_API_URL}/todo`,{},{ withCredentials:true,});
+          // console.log(callTodo);
 
           const S1 = await axios.get(`${BASE_API_URL}/getTodoS1`,{
               withCredentials:true,
@@ -68,7 +68,7 @@ export default function Todo() {
       <br />
       <br />
       
-<h1 style={{marginLeft:"13%"}}className="hnote">S1 :-</h1>
+<h1 style={{marginLeft:"13%"}}className="hnote">Stage 1 :-</h1>
       <TableS1
         onChange={(value) => {
           setDataS1(value);
@@ -82,7 +82,7 @@ export default function Todo() {
       <br />
       <br />
       
-<h1 style={{marginLeft:"13%"}} className="hnote">S2 :-</h1>
+<h1 style={{marginLeft:"13%"}} className="hnote">Stage 2 :-</h1>
 
       <TableS2
         onChange={(value) => {
@@ -97,7 +97,7 @@ export default function Todo() {
       <br />
       <br />
 
-<h1 style={{marginLeft:"13%"}} className="hnote">S3 :-</h1>
+<h1 style={{marginLeft:"13%"}} className="hnote">Stage 3 :-</h1>
       <TableS3
         onChange={(value) => {
           setDataS3(value);

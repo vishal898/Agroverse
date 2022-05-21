@@ -68,16 +68,19 @@ export default function CustomizedTables(props) {
               
                 <TableBody>
                 {perms.map((items, index) => {
+                   if( items.includes(6)) {
                   return (
+                  
                     <StyledTableRow>
                       {items.map((subItems, sIndex) => {
-                         if(subItems > 0){
-                        return <>
+                         if(subItems > 0 ){
+                        return (<>
                        
-                        <StyledTableCell className="item"style = {{backgroundColor:(subItems===1)?"#008000":(subItems===2)?"#00FF00":(subItems===3)?"#FFFF00":(subItems===4)?"#FF0000":(subItems===5)?"#FFA500":"#800080" }}> {subItems} </StyledTableCell> 
+                        <StyledTableCell  style = {{backgroundColor:(subItems===1)?"#008000":(subItems===2)?"#00FF00":(subItems===3)?"#FFFF00":(subItems===4)?"#FF0000":(subItems===5)?"#ff8000":"#800080",borderColor: "white",
+  borderStyle:" double" }}> </StyledTableCell> 
                         
                        
-                        </>};
+                        </>)};
                       })}
                        <StyledTableCell sx={{fontSize:"9pt"}} align="center" > 
                         <Button
@@ -91,7 +94,7 @@ export default function CustomizedTables(props) {
                       </StyledTableCell>
                      </StyledTableRow>
                   );
-                })}
+                }})}
                  
                 </TableBody>
               </Table>

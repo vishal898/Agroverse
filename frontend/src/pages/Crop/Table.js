@@ -67,10 +67,10 @@ export default function CustomizedTables(props) {
                       Sr. No.
                     </StyledTableCell>
                     <StyledTableCell align="center">Crop Name</StyledTableCell>
-                    <StyledTableCell align="center">S1 </StyledTableCell>
-                    <StyledTableCell align="center">S2 </StyledTableCell>
-                    <StyledTableCell align="center">S3 </StyledTableCell>
-                    <StyledTableCell align="center">Prod./5 crops </StyledTableCell>
+                    <StyledTableCell align="center">Stage 1 </StyledTableCell>
+                    <StyledTableCell align="center">Stage 2 </StyledTableCell>
+                    <StyledTableCell align="center">Stage 3 </StyledTableCell>
+                    <StyledTableCell align="center">Prod.(in kg)/5 crops </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>

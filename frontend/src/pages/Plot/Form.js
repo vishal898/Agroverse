@@ -80,7 +80,7 @@ export default function Form({ onFormSubmit }) {
                     </Grid>
                     <br/>
                     <Grid item>
-                    <InputLabel shrink htmlFor=" Length Of Each Parcel-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}>  Length Of Each Parcel : </InputLabel>
+                    <InputLabel shrink htmlFor=" Length Of Each Parcel-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}>  Length Of Each Parcel(in ft.) : </InputLabel>
                         <input className="inp"
                             id=" Length Of Each Parcel-input"
                             name="parcelLength"
@@ -94,7 +94,7 @@ export default function Form({ onFormSubmit }) {
                     </Grid>
                     <br />
                     <Grid item>
-                    <InputLabel shrink htmlFor="Width of Each Parcel-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Width of Each Parcel : </InputLabel>
+                    <InputLabel shrink htmlFor="Width of Each Parcel-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px"}}> Width of Each Parcel (in ft.) : </InputLabel>
                         <input className="inp"
                             id="Width of Each Parcel-input"
                             name="parcelWidth"

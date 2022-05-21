@@ -17,6 +17,8 @@ const User = () => {
     //   {withCredentials:true});
     //   setUser(profile.data[0]);
     //   setLoading(false);
+    const callTodo = await axios.post(`${BASE_API_URL}/todo`,{},{ withCredentials:true,});
+    console.log(callTodo);
 
     const profile = await axios.get(`${BASE_API_URL}/profile`, 
       {withCredentials:true});

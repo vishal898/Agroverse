@@ -69,7 +69,7 @@ export default function CustomizedTables(props) {
                     <StyledTableCell align="center">Demand Name</StyledTableCell>
                     <StyledTableCell align="center"> Start Date </StyledTableCell>
                     <StyledTableCell align="center"> End Date </StyledTableCell>
-                    <StyledTableCell align="center"> Quantity  </StyledTableCell>
+                    <StyledTableCell align="center"> Quantity(in kg)  </StyledTableCell>
                     <StyledTableCell align="center"> Delete </StyledTableCell>
                   </TableRow>
                 </TableHead>

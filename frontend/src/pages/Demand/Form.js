@@ -137,7 +137,7 @@ export default function Form() {
                     </Grid>
                     <br />
                     <Grid item className="inp">
-                    <InputLabel shrink htmlFor="Quantity-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}> Quantity : </InputLabel>
+                    <InputLabel shrink htmlFor="Quantity-input" style = {{color:"white" , paddingTop:"10px", fontSize:"16px",justifyContent:"left"}}> Quantity(in kg) : </InputLabel>
                         <input className="inp"
                             id="Quantity-input"
                             name="q"
